@@ -13,7 +13,8 @@ Dans le but de traiter avec l'état et les méthodes de classe dans le composant
 Voici votre composant Table comme un composant fonctionnel stateless : 
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+
+```js
 const Table = ({
   list,
   sortKey,
@@ -30,12 +31,13 @@ const Table = ({
     ...
   );
 }
-~~~~~~~~
+```
 
 Voici votre composant Table comme un composant de classe ES6 :
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+
+```js
 # leanpub-start-insert
 class Table extends Component {
   render() {
@@ -58,12 +60,13 @@ class Table extends Component {
   }
 }
 # leanpub-end-insert
-~~~~~~~~
+```
 
 Puisque vous voulez traiter l'état et les méthodes dans votre composant, vous devez ajouter un constructeur et un état initial.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+
+```js
 class Table extends Component {
 # leanpub-start-insert
   constructor(props) {
@@ -77,12 +80,13 @@ class Table extends Component {
     ...
   }
 }
-~~~~~~~~
+```
 
 Maintenant vous pouvez migrer l'état et les méthodes de classe concernant la fonctionnalité de tri depuis votre composant App vers votre composant Table de dessous.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+
+```js
 class Table extends Component {
   constructor(props) {
     super(props);
@@ -108,12 +112,13 @@ class Table extends Component {
     ...
   }
 }
-~~~~~~~~
+```
 
 N'oubliez pas de supprimer l'état déplacé et la méthode de classe `onSort()` de votre composant App.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+
+```js
 class App extends Component {
 
   constructor(props) {
@@ -138,12 +143,12 @@ class App extends Component {
   ...
 
 }
-~~~~~~~~
+```
 
 De plus, vous pouvez faire une API allégée du composant Table. Supprimez les propriétés qui lui étaient passées depuis le composant App, car elles sont maintenant gérées dans le composant Table de façon interne.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+```js
 class App extends Component {
 
   ...
@@ -175,12 +180,12 @@ class App extends Component {
     );
   }
 }
-~~~~~~~~
+```
 
 Maintenant dans votre composant Table vous pouvez utiliser la méthode interne `onSort()` et l'état interne de Table.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+```js
 class Table extends Component {
 
   ...
@@ -261,7 +266,7 @@ class Table extends Component {
     );
   }
 }
-~~~~~~~~
+```
 
 Votre application doit encore fonctionner. Mais vous avez fait un refactoring crucial. Vous avez déplacé la fonctionnalité et l'état plus près dans un autre composant. Les autres composants ont été allégés. De plus l'API du composant Table a été allégé car il traite la fonctionnalité de tri de façon interne.
 
@@ -277,49 +282,49 @@ Le processus de *lifting state* peut aller dans l'autre sens également : depuis
 Jusqu'ici vous devez utiliser `setState()` de React pour gérer votre état de composant interne. Vous pouvez transmettre un objet à une fonction qui vous permet de mettre à jour partiellement l'état interne.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+```js
 this.setState({ foo: bar });
-~~~~~~~~
+```
 
 Mais `setState()` ne prend pas seulement un objet. Dans sa seconde version, vous pouvez transmettre une fonction pour mettre à jour l'état.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+```js
 this.setState((prevState, props) => {
   ...
 });
-~~~~~~~~
+```
 
 Pourquoi vouloir faire cela? Il y a un des cas d'utilisation cruciaux où il fait sens d'utiliser une fonction à la place d'un objet. C'est quand vous mettez à jour l'état en fonction de votre état précédent ou des propriétés. Si vous n'utilisez pas une fonction, la gestion interne d'état peut engendrer des bugs.
 
 Mais pourquoi cela cause des bugs d'utiliser un objet à la place d'une fonction lorsque la mise à jour dépend de l'état précédent ou des propriétés? La méthode `setState()` de React est asynchrone. React regroupe les appelles de `setState()` et les exécute finalement. Il peut arriver que l'état précédent ou que les propriétés soient modifiés entre-temps alors vous souhaitez vous fier à eux dans votre appelle `setState()`.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+```js
 const { fooCount } = this.state;
 const { barCount } = this.props;
 this.setState({ count: fooCount + barCount });
-~~~~~~~~
+```
 
 Imaginez `fooCount` et `barCount`, c'est-à-dire l'état ou les propriétés, changent autre part de façon asynchrone lorsque vous appelez `setState()`. Dans une application grandissante, vous avez plus qu'un appelle à `setState()` au travers de votre application. Puisque `setState()` s'exécute de façon asynchrone, vous pourriez dépendre dans cet exemple de valeurs périmées.
 
 Avec l'approche par fonction, la fonction dans `setState()` est une fonction de rappel (callback) qui opère sur l'état et les propriétés au moment de l'exécution de la fonction de rappel. Bien que `setState()` soit asynchrone, avec une fonction il prend l'état et les propriétés au moment de quand c'était exécuté.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+```js
 this.setState((prevState, props) => {
   const { fooCount } = prevState;
   const { barCount } = props;
   return { count: fooCount + barCount };
 });
-~~~~~~~~
+```
 
 Maintenant, retournons à votre code pour réparer ce comportement. Ensemble nous allons le réparer à un endroit où `setState()` est utilisé et dépend de l'état et des propriétés. Après quoi, vous serez capable de l'appliquer à d'autres endroits également.
 
 La méthode `setSearchTopStories()` dépend de l'état précédent c'est donc un parfait exemple pour utiliser une fonction à la place d'un objet dans `setState()`. Pour l'heure, cela ressemble au bout de code suivant.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+```js
 setSearchTopStories(result) {
   const { hits, page } = result;
   const { searchKey, results } = this.state;
@@ -341,12 +346,12 @@ setSearchTopStories(result) {
     isLoading: false
   });
 }
-~~~~~~~~
+```
 
 Vous extrayez les valeurs de l'état, mais vous mettez à jour l'état en fonction de l'état précédent de façon asynchrone.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+```js
 setSearchTopStories(result) {
   const { hits, page } = result;
 
@@ -356,12 +361,12 @@ setSearchTopStories(result) {
   });
 # leanpub-end-insert
 }
-~~~~~~~~
+```
 
 Vous pouvez déplacer le bloc en entier que vous avez déjà implémenté à l'intérieur de la fonction. Vous avez seulement à échanger le fait que vous opérez sur le `prevState` plutôt que `this.state`.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+```js
 setSearchTopStories(result) {
   const { hits, page } = result;
 
@@ -388,22 +393,23 @@ setSearchTopStories(result) {
 # leanpub-end-insert
   });
 }
-~~~~~~~~
+```
 
 Cela réparera notre problème d'état périmé. Il y a une amélioration supplémentaire. Puisque c'est une fonction, vous pouvez extraire la fonction pour un gain de lisibilité. C'est l'un des avantages d'utiliser une fonction au lieu d'un objet. La fonction peut vivre à l'extérieur du composant. Mais vous devez utiliser une fonction d'ordre supérieur pour transmettre le résultat. En fin de compte, vous souhaitez mettre à jour l'état basé sur le résultat rapporté de l'API.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+```js
 setSearchTopStories(result) {
   const { hits, page } = result;
   this.setState(updateSearchTopStoriesState(hits, page));
 }
-~~~~~~~~
+```
 
 La fonction `updateSearchTopStoriesState()`retourne une fonction. C'est une fonction d'ordre supérieur. Vous pouvez définir cette fonction d'ordre supérieur à l'extérieur de votre composant App. Notez comment la signature de la fonction change légèrement.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+```js
+
 # leanpub-start-insert
 const updateSearchTopStoriesState = (hits, page) => (prevState) => {
   const { searchKey, results } = prevState;
@@ -430,7 +436,7 @@ const updateSearchTopStoriesState = (hits, page) => (prevState) => {
 class App extends Component {
   ...
 }
-~~~~~~~~
+```
 
 C'est tout. La fonction à la place de l'approche objet dans `setState()` résout de potentiels bugs et améliore la lisibilité et maintenabilité de votre code. De plus, elle devient testable à l'extérieur du composant App. Vous pouvez l'exporter et écrire un test pour vous exercer.
 

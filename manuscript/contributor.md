@@ -1,0 +1,5 @@
+# Contributeurs
+
+Plusieurs personnes ont rendu possible l'écriture et l'amélioration de *The Road to learn React* au fur et à mesure. Actuellement, c'est l'un des livres React.js les plus téléchargés. Originellement le livre a été écrit par l'Ingénieur Logiciel allemand [Robin Wieruch](https://www.robinwieruch.de/). Mais toutes les traductions du livre ne seraient pas possibles sans l'aide de collaborateurs. Cette version du livre a été traduite par l'Ingénieur Logiciel français [Guillaume Borg](https://www.linkedin.com/in/guillaume-borg-0904b8a8/) publiant du contenu portant sur des technologies Web autour du JavaScript et du W3C. Son contenu est en premier lieu francophone et accessible via sa [chaîne Youtube](https://www.youtube.com/c/EchyzenWebsite), son [compte Twitter](https://twitter.com/EchyzenWebsite) ainsi que son [compte Github](https://github.com/GuillaumeUnice).
+
+{pagebreak}

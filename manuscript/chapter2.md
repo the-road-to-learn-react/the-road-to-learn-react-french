@@ -980,7 +980,7 @@ Une autre façon soignée de refactorer peut être réalisé de nouveau avec la 
 // ES5
 function isSearched(searchTerm) {
   return function(item) {
-    return item.title.toLowerCase().includes(searchTerm.toLowerCase());
+    return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1;
   }
 }
 

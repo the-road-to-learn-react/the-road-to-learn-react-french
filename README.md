@@ -1,4 +1,4 @@
-# The Road to learn React
+# The Road to learn React [Livre]
 
 Le dépôt officiel pour le livre open source [The Road to learn React](https://www.robinwieruch.de/the-road-to-learn-react/). Vous pouvez aussi trouver le [code source](https://github.com/rwieruch/hackernews-client).
 

@@ -657,7 +657,7 @@ const Sort = ({ sortKey, onSort, children }) =>
   </Button>
 ~~~~~~~~
 
-Comme vous pouvez le voir, le composant Sort réutilise votre composant Button commun. Au clique d'un bouton chaque individuelle `sortKey` passée sera mutée par la méthode `onSort()`. Maintenant vous devez être capable de trier la liste lorsque vous cliquez sur les en-têtes de colonne.
+Comme vous pouvez le voir, le composant Sort réutilise votre composant Button commun. Au clic d'un bouton chaque individuelle `sortKey` passée sera mutée par la méthode `onSort()`. Maintenant vous devez être capable de trier la liste lorsque vous cliquez sur les en-têtes de colonne.
 
 Il y a une amélioration mineure pour un visuel amélioré. Jusqu'ici, le bouton dans la colonne d'en-tête est un peu en décalé. Donnons au bouton dans le composant Sort un `className` approprié.
 

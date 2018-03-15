@@ -7,7 +7,7 @@ Ce chapitre fournit une introduction à React. Peut-être vous demander vous: Po
 **Pourquoi devrez-vous, vous embêter à apprendre React**
 Ces dernières années les applications web monopage ([SPA](https://en.wikipedia.org/wiki/Single-page_application)) sont devenu populaires. Les frameworks comme Angular, Ember et Backbone aident les développeurs JavaScript à construire des applications web modernes au-delà du simple usage de Vanilla JavaScript et JQuery. La liste de ces solutions populaires n'est pas exhaustive. Il existe un large panel de frameworks pour SPA. Quand on compare les dates de sorties officielles, la plupart d'entre eux font partie de la première génération de SPAs: Angular 2010, Backbone 2010, Ember 2011.
 
-La sortie officielle de React par Facebook date de 2013. React n'est pas un framework SPA à proprement parler mais une bibliothèque gérant que la vue. C'est le "V" du fameux MVC (Model View Controller). Il permet seulement de rendre des composants en tant qu'élément visionnable dans le navigateur. Naturellement, l'écosystème autour de React rend possible la création de SPAs.
+La sortie officielle de React par Facebook date de 2013. React n'est pas un framework SPA à proprement parler mais une bibliothèque gérant que la vue. C'est le "V" du fameux [MVC](https://en.wikipedia.org/wiki/Model–view–controller) (Model View Controller). Il permet seulement de rendre des composants en tant qu'élément visionnable dans le navigateur. Naturellement, l'écosystème autour de React rend possible la création de SPAs.
 
 Mais pourquoi vous devrez utiliser React plutôt que la première génération de frameworks SPA? Tandis que la première génération de frameworks essayèrent de résoudre beaucoup de problématiques à la fois, React vous assiste seulement pour construire votre couche: vue. C'est une bibliothèque et non un framework. L'idée derrière cela : votre vue est une hiérarchie de composants composables.
 
@@ -26,6 +26,7 @@ De nos jours, React est probablement l'un des meilleurs choix pour construire da
 
 * lire plus à propos [pourquoi je suis passé d'Angular à React](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)
 * lire plus à propos [l'écosystème souple de React](https://www.robinwieruch.de/essential-react-libraries-framework/)
+* lire plus à propos de [comment apprende un framework](https://www.robinwieruch.de/how-to-learn-framework/)
 
 ## Prérequis
 
@@ -46,9 +47,9 @@ Vous pouvez vérifier vos versions de node et npm en ligne de commande. Si vous 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 node --version
-*v8.3.0
+*v8.9.4
 npm --version
-*v5.5.1
+*v5.6.0
 ~~~~~~~~
 
 ## node et npm
@@ -164,7 +165,7 @@ Vous pouvez vérifier la version de *create-react-app* pour vérifier que l'inst
 {title="Command Line",lang="text"}
 ~~~~~~~~
 create-react-app --version
-*v1.4.1
+*v1.5.1
 ~~~~~~~~
 
 Maintenant vous pouvez initier votre première application React. Nous l'appelons *hackernews*, mais vous pouvez choisir un autre nom. L'initialisation prend quelques secondes. Ensuite, naviguer simplement à l'intérieur du dossier :

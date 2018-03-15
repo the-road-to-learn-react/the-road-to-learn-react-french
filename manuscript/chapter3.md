@@ -128,7 +128,6 @@ class App extends Component {
 
 # leanpub-start-insert
     this.setSearchTopStories = this.setSearchTopStories.bind(this);
-    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
 # leanpub-end-insert
     this.onSearchChange = this.onSearchChange.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
@@ -139,17 +138,15 @@ class App extends Component {
     this.setState({ result });
   }
 
-  fetchSearchTopStories(searchTerm) {
+  componentDidMount() {
+    const { searchTerm } = this.state;
+
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
-      .catch(e => e);
+      .catch(error => error);
   }
 
-  componentDidMount() {
-    const { searchTerm } = this.state;
-    this.fetchSearchTopStories(searchTerm);
-  }
 # leanpub-end-insert
 
   ...
@@ -164,7 +161,7 @@ Deuxièmement, vous utilisez la méthode du cycle de vie `componentDidMount()` p
 
 Troisièmement, l'API native *fetch* est utilisée. Les *templates strings* du JavaScript ES6 permettent de composer l'URL avec `searchTerm`. L'URL est l'argument pour la fonction d'API native *fetch*. La réponse a besoin d'être transformée en structure de données JSON, qui est une étape obligatoire pour une fonction native *fetch* lorsque l'on traite avec des structures de données JSON, et peut finalement être écrit comme résultat dans l'état interne du composant. De plus, le *catch block* est utilisé dans le cas d'une erreur. Si une erreur se produit durant la requête, la fonction lancera l'intérieur du *catch block* au lieu du *then block*. Dans un prochain chapitre du livre, vous inclurez la gestion d'erreur.
 
-Dernier point, mais pas des moindres, n'oubliez pas de lier vos nouvelles méthodes de composant dans le constructeur.
+Dernier point, mais pas des moindres, n'oubliez pas de lier votre nouvelle méthode de composant dans le constructeur.
 
 Maintenant vous pouvez utiliser les données obtenues à la place de la liste d'objets. Cependant, vous devez être de nouveau prudent. Le résultat n'est pas seulement une liste de données. [C'est un objet complexe avec des metas informations et une liste de succès qui sont dans notre cas les articles](https://hn.algolia.com/api). Vous pouvez afficher l'état interne avec un `console.log(this.state);` dans votre méthode `render()` pour le visualiser.
 
@@ -424,7 +421,7 @@ En fin de compte, vous devrez être capable de voir les données récupérées d
 
 Actuellement, lorsque vous utilisez le composant Search avec ses champs d'entrée, vous filtrerez la liste. Cependant cela se produit côté client. Maintenant vous allez utiliser l'API d'Hacker News pour rechercher côté serveur. Sans quoi vous traiterez uniquement la première réponse de l'API que vous obtiendriez via `componentDidMount()` avec en paramètre de terme de recherche celui par défaut.
 
-Vous pouvez définir une méthode `onSearchSubmit()` dans votre composant App qui va chercher les résultats depuis l'API d'Hacker News lors de l'exécution d'une recherche dans le composant Search. Ce sera la même recherche que celle dans votre méthode du cycle de vie `componentDidMount()`, mais cette fois avec un terme de recherche modifiée issue de l'état local et non avec le terme de recherche initiale par défaut.
+Vous pouvez définir une méthode `onSearchSubmit()` dans votre composant App qui va chercher les résultats depuis l'API d'Hacker News lors de l'exécution d'une recherche dans le composant Search.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -439,7 +436,6 @@ class App extends Component {
     };
 
     this.setSearchTopStories = this.setSearchTopStories.bind(this);
-    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
 # leanpub-start-insert
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
@@ -452,9 +448,62 @@ class App extends Component {
 # leanpub-start-insert
   onSearchSubmit() {
     const { searchTerm } = this.state;
-    this.fetchSearchTopStories(searchTerm);
   }
 # leanpub-end-insert
+
+  ...
+}
+~~~~~~~~
+
+La méthode `onSearchSubmit()` doit utiliser la même fonctionnalité que la méthode du cycle de vie `componentDidMount()`, mais cette fois-ci avec un terme de recherche modifiée issue de l'état local et non du terme de recherche par défaut. Ainsi vous pouvez extraire la fonctionnalité en tant que méthode de classe réutilisable.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      result: null,
+      searchTerm: DEFAULT_QUERY,
+    };
+
+    this.setSearchTopStories = this.setSearchTopStories.bind(this);
+# leanpub-start-insert
+    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
+# leanpub-end-insert
+    this.onSearchChange = this.onSearchChange.bind(this);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.onDismiss = this.onDismiss.bind(this);
+  }
+
+  ...
+
+# leanpub-start-insert
+  fetchSearchTopStories(searchTerm) {
+    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
+      .then(response => response.json())
+      .then(result => this.setSearchTopStories(result))
+      .catch(error => error);
+  }
+# leanpub-end-insert
+
+  componentDidMount() {
+    const { searchTerm } = this.state;
+# leanpub-start-insert
+    this.fetchSearchTopStories(searchTerm);
+# leanpub-end-insert
+  }
+
+  ...
+
+  onSearchSubmit() {
+    const { searchTerm } = this.state;
+# leanpub-start-insert
+    this.fetchSearchTopStories(searchTerm);
+# leanpub-end-insert
+  }
 
   ...
 }
@@ -628,13 +677,15 @@ class App extends Component {
 # leanpub-end-insert
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
-      .catch(e => e);
+      .catch(error => error);
   }
 
   ...
 
 }
 ~~~~~~~~
+
+L'argument de page utilise la valeur par défaut des arguments ES6 pour introduire une solution de repli vers la page `0` au cas où aucun argument de page est fourni à la fonction.
 
 Maintenant vous pouvez utiliser la page courante de la réponse d'API dans `fetchSearchTopStories()`. Vous pouvez utiliser cette méthode dans un bouton pour aller chercher plus de sujets au handler `onClick` du bouton. Utilisons le Button pour aller chercher plus de données paginées depuis l'API d'Hacker News. Vous aurez seulement besoin de définir l'handler `onClick()` qui prend le terme de recherche courant et la prochaine page (current page + 1).
 
@@ -734,7 +785,7 @@ fetchSearchTopStories(searchTerm, page = 0) {
 # leanpub-end-insert
     .then(response => response.json())
     .then(result => this.setSearchTopStories(result))
-    .catch(e => e);
+    .catch(error => error);
 }
 ~~~~~~~~
 
@@ -742,6 +793,7 @@ Après çà, la requête auprès de l'API d'Hacker News va chercher plus d'élé
 
 ### Exercices :
 
+* lire plus à propos des [valeurs par défaut des arguments ES6](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters)
 * expérimenter avec les [paramètres de l'API d'Hacker News](https://hn.algolia.com/api)
 
 ## Cache client
@@ -1056,7 +1108,7 @@ class App extends Component {
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
 # leanpub-start-insert
-      .catch(e => this.setState({ error: e }));
+      .catch(error => this.setState({ error }));
 # leanpub-end-insert
   }
 
@@ -1170,6 +1222,7 @@ Votre application devrait encore fonctionner, mais cette fois avec une gestion d
 ### Exercices :
 
 * lire plus à propos de la [gestion des erreurs pour les composants React](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
+* lire plus à propos de [pourquoi les frameworks sont importants](https://www.robinwieruch.de/why-frameworks-matter/)
 
 {pagebreak}
 

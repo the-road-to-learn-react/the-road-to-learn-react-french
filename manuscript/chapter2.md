@@ -347,8 +347,6 @@ onDismiss(id) {
 
 Maintenant lancer une nouvelle fois l'application et essayait le bouton "Dismiss". Il devrait fonctionner. Ce que vous avez expérimenté est l'**unidirectional data flow** au sein de React. Vous déclenchez une action dans votre vue avec `onCLick()`, une fonction ou méthode de classe modifie l'état interne du composant et la méthode `render()` du composant est lancée une nouvelle fois pour updater la vue.
 
-![Mise à jour de l'état interne à l'aide du flux de données unidirectionnel](images/set-state-to-render-unidirectional.png)
-
 ### Exercices :
 
 * lire plus à propos [de l'état et du cycle de vie de React](https://facebook.github.io/react/docs/state-and-lifecycle.html)
@@ -1413,8 +1411,8 @@ class Table extends Component {
 }
 ~~~~~~~~
 
-Le composant Button attend une propriété `className` dans les propriétés. L'attribut `className` est un autre dérivé React pour l'attribut HTML `class`. Mais nous ne transmettons aucun `className` lorsque le Button était utilisé. Dans le code il devrait être plus explicite que la `className` dans le composant Button soit optionnelle.
-
+Le composant Button attend une propriété `className` dans les propriétés. L'attribut `className` est un autre dérivé React pour l'attribut HTML `class`. Mais nous ne transmettons aucun `className` lorsque le Button était utilisé. Dans le code il devrait être plus explicite que la `className` dans le composant Button soit optionnelle. Ainsi, vous pouvez assigner une valeur par défaut dans votre objet de décomposition.
+ 
 Par conséquent, vous pouvez utiliser le paramètre par défaut qui est une fonctionnalité de JavaScript ES6.
 
 {title="src/App.js",lang=javascript}
@@ -1435,10 +1433,6 @@ class Button extends Component {
 ~~~~~~~~
 
 Maintenant, quand il n'y a pas de propriété `className` spécifiée lors de l'utilisation du composant Button, la valeur sera une chaine de caractères au lieu d'`undefined`.
-
-### Exercices :
-
-* lire plus à propos [des paramètres par défaut d'ES6](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters)
 
 ## Déclarations de composant
 

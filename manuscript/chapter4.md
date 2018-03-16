@@ -354,6 +354,7 @@ import App from './App';
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<App />, div);
+  ReactDOM.unmountComponentAtNode(div);
 });
 ~~~~~~~~
 
@@ -367,11 +368,6 @@ Vous pouvez lancer vos cas de tests en utilisant le script de test interactif de
 ~~~~~~~~
 npm test
 ~~~~~~~~
-
-**Note : ** Si des erreurs s'affichent lorsque vous lancez le test unique du composant App pour la première fois, cela pourrait être à cause de la méthode fetch incompatible qui est utilisé dans `fetchSearchTopStories()` qui est déclenchée dans `componentDidMount()`. Vous pouvez la faire fonctionner en suivant ces deux étapes : 
-
-* En ligne de commande, installer le package suivant : `npm install isomorphic-fetch`
-* L'inclure dans votre fichier *App.js* : `import fetch from 'isomorphic-fetch';`
 
 Maintenant Jest vous permet d'écrire des tests d'instantanés. Ces tests font un instantané de votre composant rendu et lancent cet instantané par rapport à de futurs instantanés. Lorsqu'un futurs intantané change, vous serez informé dans le test. Vous pouvez soit accepter le changement d'instantané, car vous avez changé l'implémentation du composant délibérément, ou rejeter le changement et investiguer sur l'erreur. Il complète les tests unitaires très bien, car vous testez seulement les différences sur la sortie rendue. Il n'ajoute pas un important coût de maintenance, car vous pouvez simplement accepter les instantanés modifiés lorsque vous changez quelques chose délibérément pour la sortie de rendu de votre composant.
 
@@ -397,14 +393,16 @@ import App from './App';
 
 # leanpub-start-insert
 describe('App', () => {
-# leanpub-end-insert
 
+# leanpub-end-insert
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<App />, div);
+    ReactDOM.unmountComponentAtNode(div);
   });
 
 # leanpub-start-insert
+
 });
 # leanpub-end-insert
 ~~~~~~~~
@@ -423,6 +421,7 @@ describe('App', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<App />, div);
+    ReactDOM.unmountComponentAtNode(div);
   });
 
 # leanpub-start-insert
@@ -461,6 +460,7 @@ describe('Search', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<Search>Search</Search>, div);
+    ReactDOM.unmountComponentAtNode(div);
   });
 
   test('has a valid snapshot', () => {
@@ -472,6 +472,7 @@ describe('Search', () => {
   });
 
 });
+
 # leanpub-end-insert
 ~~~~~~~~
 
@@ -494,6 +495,7 @@ describe('Button', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<Button>Give Me More</Button>, div);
+    ReactDOM.unmountComponentAtNode(div);
   });
 
   test('has a valid snapshot', () => {
@@ -658,6 +660,8 @@ Maintenant, vous pouvez importer *les PropTypes*.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
+import React, { Component } from 'react';
+import axios from 'axios';
 # leanpub-start-insert
 import PropTypes from 'prop-types';
 # leanpub-end-insert
@@ -667,7 +671,11 @@ Débutons en assignant une interface de propriétés aux composants :
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-const Button = ({ onClick, className = '', children }) =>
+const Button = ({
+  onClick,
+  className = '',
+  children,
+}) =>
   <button
     onClick={onClick}
     className={className}
@@ -788,13 +796,13 @@ Button.defaultProps = {
 
 Identique que le paramètre par défaut d'ES6, la propriété par défaut assure que la propriété est établie à une valeur par défaut lorsque le composant parent n'est pas spécifié. La vérification du type de *PropType* se produit après que la propriété par défaut est évaluée.
 
-Si vous lancez de nouveau vos tests, vous pourriez voir les erreurs *PropTypes* de vos composants dans votre terminal. Elles peuvent apparaitre car vous n'avez pas défini toutes les propriétés de vos composants dans les tests qui sont définis comme requises dans votre définition de *PropType*. Cependant les tests eux-même passent correctement. Vous pouvez passer toutes les propriétés requises pour éviter ces erreurs.
+Si vous lancez de nouveau vos tests, vous pourriez voir les erreurs *PropTypes* de vos composants dans votre terminal. Elles peuvent apparaitre car vous n'avez pas défini toutes les propriétés de vos composants dans les tests qui sont définis comme requises dans votre définition de *PropType*. Cependant les tests eux-même passent correctement. Vous pouvez passer toutes les propriétés requises aux composants dans vos tests pour éviter ces erreurs.
 
 ### Exercices :
 
 * définir l'interface *PropType* pour le composant Search
 * ajouter et mettre à jour les interfaces *PropType* lorsque vous ajoutez et mettez à jour des composants dans les prochains chapitres
-* lire plus à propos des [PropTypes de React](https://facebook.github.io/react/docs/typechecking-with-proptypes.html)
+* lire plus à propos des [PropTypes de React](https://reactjs.org/docs/typechecking-with-proptypes.html)
 
 {pagebreak}
 
@@ -809,4 +817,4 @@ Vous avez appris comment organiser votre votre et comment le tester! Récapitulo
 * Général
   * L'organisation de code vous permet de mettre à l'échelle votre application avec les meilleurs pratiques
 
-Vous pouvez trouver le code source dans le [dépôt officiel](https://github.com/rwieruch/hackernews-client/tree/4.4).
+Vous pouvez trouver le code source dans le [dépôt officiel](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.4).

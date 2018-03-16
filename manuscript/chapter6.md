@@ -26,7 +26,7 @@ const Table = ({
     ? sortedList.reverse()
     : sortedList;
 
-  return(
+  return (
     ...
   );
 }
@@ -115,7 +115,8 @@ N'oubliez pas de supprimer l'état déplacé et la méthode de classe `onSort()`
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
-
+  _isMounted = false;
+  
   constructor(props) {
     super(props);
 
@@ -164,12 +165,17 @@ class App extends Component {
     return (
       <div className="page">
         ...
+        { error
+          ? <div className="interactions">
+            <p>Something went wrong.</p>
+          </div>
+          : <Table
 # leanpub-start-insert
-        <Table
-          list={list}
-          onDismiss={this.onDismiss}
-        />
+            list={list}
+            onDismiss={this.onDismiss}
 # leanpub-end-insert
+          />
+        }
         ...
       </div>
     );
@@ -269,7 +275,7 @@ Le processus de *lifting state* peut aller dans l'autre sens également : depuis
 
 ### Exercises:
 
-* lire plus à propos du [lifting state dans React](https://facebook.github.io/react/docs/lifting-state-up.html)
+* lire plus à propos de l'[élévation de l'état en React](https://reactjs.org/docs/lifting-state-up.html)
 * lire plus à propos du lifting state dans [React avant l'utilisation de Redux](https://www.robinwieruch.de/learn-react-before-using-redux/)
 
 ## setState() : revisité
@@ -436,8 +442,10 @@ C'est tout. La fonction à la place de l'approche objet dans `setState()` résou
 
 ### Exercise:
 
-* lire plus à propos de l'[utilisation correcte de l'état dans React](https://facebook.github.io/react/docs/state-and-lifecycle.html#using-state-correctly)
-* refactorer toutes les méthodes `setState()` utiliser une fonction
+* lire plus à propos de l'[utilisation correcte de l'état dans React](https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly)
+* exporter updateSearchTopStoriesState du fichier
+ * écrire un test pour cela qui passe un *payload* (hits, page) et un état précédent crée et finalement attendre un nouvel état
+* refactorer vos méthodes `setState()` utiliser une fonction
   * mais seulement quand cela fait sens, c'est-à-dire lorsqu'il dépend de l'état ou des propriétés
 * lancer vos tests de nouveau et vérifier que tout est à jour
 
@@ -467,4 +475,4 @@ Vous avez appris la gestion d'état avancé dans React! Récapitulons les dernie
   * setState peut utiliser une fonction pour empêcher des bugs d'état périmé
   * les solutions externes existantes qui vous aident à apprivoiser l'état
 
-Vous pouvez trouver le code source sur le [dépôt officiel](https://github.com/rwieruch/hackernews-client/tree/4.6).
+Vous pouvez trouver le code source sur le [dépôt officiel](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.6).

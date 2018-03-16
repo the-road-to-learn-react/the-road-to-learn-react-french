@@ -146,7 +146,7 @@ Malheureusement ce n'est pas tout. Vous allez être obligéq de vous occuper de 
 
 ### Exercices :
 
-* lire plus à propos des [installations React](https://facebook.github.io/react/docs/installation.html)
+* lire plus à propos des [installations React](https://reactjs.org/docs/try-react.html)
 
 ## L'installation zéro configuration
 
@@ -326,14 +326,14 @@ export default App;
 
 Cela devrait fonctionner quand vous démarr er votre application à l'aide de la commande `npm start` de nouveau.
 
-Qui plus est vous devriez avoir remarqué l'attribut `className`. Il réfléchit l'attribut HTML standard `class`. Due à des raisons techniques, JSX a remplacé une poignée d'attributs HTML internes. Vous pouvez trouver tous les [attributs HTML supportés au sein de la documentation React](https://facebook.github.io/react/docs/dom-elements.html). Ils suivent tous la convention camelCase. Dans votre apprentissage à React, vous rencontrerez quelques attributs spécifiques JSX supplémentaire.
+Qui plus est vous devriez avoir remarqué l'attribut `className`. Il réfléchit l'attribut HTML standard `class`. Due à des raisons techniques, JSX a remplacé une poignée d'attributs HTML internes. Vous pouvez trouver tous les [attributs HTML supportés au sein de la documentation React](https://reactjs.org/docs/dom-elements.html#all-supported-html-attributes). Ils suivent tous la convention camelCase. Dans votre apprentissage à React, vous rencontrerez quelques attributs spécifiques JSX supplémentaire.
 
 ### Exercices :
 
 * Définir plus de variables et les rendre au sein de votre JSX
   * utiliser un objet complexe pour représenter un utilisateur avec prénom et nom
   * rendre les propriétés de l'utilisateur dans votre JSX
-* Lire plus à propos de [JSX](https://facebook.github.io/react/docs/introducing-jsx.html)
+* Lire plus à propos de [JSX](https://reactjs.org/docs/introducing-jsx.html)
 * Lire plus à propos des [composants React, éléments et instances](https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html)
 
 ## ES6 const et let
@@ -440,7 +440,7 @@ ReactDOM.render(
 ### Exercices :
 
 * ouvrir *public/index.html* pour voir où les applications React prennent place à l'intérieur de votre HTML
-* lire plus à propos [du rendu des éléments dans React](https://facebook.github.io/react/docs/rendering-elements.html)
+* lire plus à propos [du rendu des éléments dans React](https://reactjs.org/docs/rendering-elements.html)
 
 ## Hot Module Replacement
 
@@ -615,7 +615,7 @@ Vous affichez les deux listes d'objets maintenant. Vous pouvez démarrer votre a
 
 ### Exercices :
 
-* lire plus à propos des [listes et clés de React](https://facebook.github.io/react/docs/lists-and-keys.html)
+* lire plus à propos des [listes et clés de React](https://reactjs.org/docs/lists-and-keys.html)
 * Récapitulatif des [fonctionnalités natives et standard du tableau en JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 * Utiliser plus d'expression JavaScript de vous-même en JXS
 
@@ -778,6 +778,4 @@ Vous avez appris à initier votre propre application React! Récapitulons les de
   * Les fonctions fléchées peuvent être utilisées pour conserver vos fonctions concises
   * Les classes sont utilisées pour définir les composants dans React en les étendant
 
-Il peut être intéressant de faire une pause à ce niveau-ci. Intérioriser les acquis et les appliquer de façon autonome.
-
-Vous pouvez trouver le code source dans le [dépôt officiel](https://github.com/rwieruch/hackernews-client/tree/4.1).
+Il peut être intéressant de faire une pause à ce niveau-ci. Intérioriser les acquis et les appliquer de façon autonome. Vous pouvez trouver le code source dans le [dépôt officiel](https://github.com/rwieruch/hackernews-client/tree/4.1).

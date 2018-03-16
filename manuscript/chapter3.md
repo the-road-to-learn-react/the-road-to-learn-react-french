@@ -66,8 +66,8 @@ Il y a plus de méthode du cycle de vie : `componentDidCatch(error, info)`. Cela
 
 ### Exercices :
 
-* lire plus à propos [ des méthodes du cycle de vie dans React](https://facebook.github.io/react/docs/react-component.html)
-* lire plus à propos [de l'état relié aux méthodes du cycle de vie dans React](https://facebook.github.io/react/docs/state-and-lifecycle.html)
+* lire plus à propos [ des méthodes du cycle de vie dans React](https://reactjs.org/docs/react-component.html)
+* lire plus à propos [de l'état relié aux méthodes du cycle de vie dans React](https://reactjs.org/docs/state-and-lifecycle.html)
 * lire plus à propos [de la gestion d'erreur dans les composants](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
 ## Aller chercher les données
@@ -414,8 +414,8 @@ En fin de compte, vous devrez être capable de voir les données récupérées d
 
 ### Exercices :
 
-* lire plus à propos du [rendu conditionnel de React](https://facebook.github.io/react/docs/conditional-rendering.html)
 * lire plus à propos des [différentes façons pour les rendus conditionnels](https://www.robinwieruch.de/conditional-rendering-react/)
+* lire plus à propos du [rendu conditionnel de React](https://reactjs.org/docs/conditional-rendering.html)
 
 ## Recherche côté client ou côté serveur
 
@@ -632,7 +632,7 @@ Maintenant vous devez être capable de rechercher différents sujets d'Hacker Ne
 
 ### Exercices :
 
-* lire plus à propos [ des évènements synthétiques dans React](https://facebook.github.io/react/docs/events.html)
+* lire plus à propos [des évènements synthétiques dans React](https://reactjs.org/docs/events.html)
 * expérimenter avec l'[API d'Hacker News](https://hn.algolia.com/api)
 
 ## Recherche paginée
@@ -1222,12 +1222,132 @@ Votre application devrait encore fonctionner, mais cette fois avec une gestion d
 ### Exercices :
 
 * lire plus à propos de la [gestion des erreurs pour les composants React](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
-* lire plus à propos de [pourquoi les frameworks sont importants](https://www.robinwieruch.de/why-frameworks-matter/)
 
+## Axios à la place de Fetch
+
+Dans l'un des précédents chapitres, nous avons introduit l'API *fetch* native pour performer une requête auprès de la plateforme d'Hacker News. Le navigateur vous permet d'utiliser cette API *fetch* native. Cependant, pas tous les navigateurs la supportent, particulièrement les plus anciens navigateurs. De plus, une fois que vous commencer à tester votre application au sein d'un environnement de navigateur sans tête (*headless browser*) (il n'y a pas de navigateur, à la place il est seulement simulé), il peut avoir des soucis concernant l'API *fetch*. Un tel environnement *headless browser* peut se produire lors de l'écriture et de l'exécution des tests pour votre application qui ne tourne pas dans un véritable navigateur. Il y a différentes manières pour faire fonctionner le *fetch* au sein des plus anciens navigateurs (polyfills) et dans les tests ([isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch)), mais dans ce livre nous ne nous aventurerons dans cette voie.
+
+Une manière alternative pour résoudre cela serait de substituer l'API *fetch* native avec une bibliothèque stable telle qu'[axios](https://github.com/axios/axios). Axios est une bibliothèque qui résout seulement un problème, mais elle le résout très bien : performer des requêtes asynchrones pour des APIs distantes. C'est pourquoi vous l'utiliserez dans ce livre. Plus concrètement, le chapitre devrait vous montrer comment substituer une bibliothèque (qui est une API native du navigateur dans ce cas). De façon abstraite, le chapitre devrait vous montrer comment vous pouvez toujours trouver une solution pour les bizarreries (ex : anciens navigateurs, tests avec *headless browser*) du développement web. Donc n'arrêtez pas de chercher des solutions peu importe les embuches.
+
+Regardons comment l'API *fetch* native peut être substitué avec *axios*. A vrai dire tout ce qui a été dit précédemment semble plus compliqué que ce qui l'en est. Premièrement, vous devez installer *axios* avec la ligne de commande :
+
+{title="Command Line",lang="text"}
+~~~~~~~~
+npm install axios
+~~~~~~~~
+
+Deuxièmement, vous pouvez importer *axios* dans votre fichier du composant App :
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+import React, { Component } from 'react';
+# leanpub-start-insert
+import axios from 'axios';
+# leanpub-end-insert
+import './App.css';
+
+...
+~~~~~~~~
+
+Et enfin mais pas des moindres, vous pouver l'utiliser à la place de `fetch()`. Son utilisation apparaît pratiquement identique à l'API *fetch*. Elle prend l'URL en tant qu'argument et retourne une *promise*. Vous n'êtes pas non plus obligé de transformer la réponse retournée vers du JSON. Axios le fait pour vous et englobe le résultat dans un objet `data` en JavaScript. Ainsi assurez-vous d'adapter votre code à la structure de données retournées.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  fetchSearchTopStories(searchTerm, page = 0) {
+# leanpub-start-insert
+    axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
+      .then(result => this.setSearchTopStories(result.data))
+# leanpub-end-insert
+      .catch(error => this.setState({ error }));
+  }
+
+  ...
+
+}
+~~~~~~~~
+
+C'est tout concernant le remplacement de *fetch* avec *axios* dans ce chapitre. Dans votre code, vous appelez `axios()` qui utilise par défaut une requête HTTP GET. Vous pouvez faire la requête HTTP GET explicite en appelant `axios.get()`. Aussi vous pouvez à la place utiliser une autre méthode HTTP tel que le POST HTTP avec `axios.post()`. Ici vous pouvez déjà apprécier à quel point *axios* est une bibliothèque puissante pour performer des requêtes auprès d'APIs distantes. Je recommande souvent de l'utiliser à la place de l'API *fetch* lorsque vos requêtes d'API deviennent complexes ou que vous devez traiter les bizarreries du développement web avec les *promises*. De plus, dans un prochain chapitre, vous introduirez les tests dans votre application. Alors vous n'aurez plus besoin de vous inquiéter à propos d'un navigateur ou d'un environnement d'*headless browser*.
+
+Je souhaite introduire une autre amélioration pour la requête d'Hacker News au sein du composant App. Imaginez votre composant se monte lorsque la page est rendue pour la première fois dans le navigateur. Dans `componentDidMount()` le composant débute la requête, mais ensuite, comme votre application introduit une certaine navigation, vous naviguez en dehors de cette page vers une autre page. Votre composant App se démonte, mais il y a toujours une requête en *pending* issue de votre méthode du cycle de vie `componentDidMount()`. Il tentera d'utiliser `this.setState()` au final dans le `then()` ou le `catch()` du bloc de la *promise*. Peut-être que c'est la première fois que vous verrez le warning suivant sur votre ligne de commande ou sur votre console développeur du navigateur :
+
+{title="Command Line",lang="text"}
+~~~~~~~~
+Warning: Can only update a mounted or mounting component. This usually means you called setState, replaceState, or forceUpdate on an unmounted component. This is a no-op.
+~~~~~~~~
+
+Vous pouvez traiter ce problème en interrompant la requête lorsque votre composant se démonte ou empêcher l'appel `this.setState()` sur un composant démonté. C'est une bonne pratique dans React, même si elle n'est pas suivi par de très nombreux développeurs, dans le but de conserver une application propre sans warnings dérangeants. Cependant, l'API *promise* courante n'implémente pas le fait d'interrompre une requête. Ainsi vous avez besoin de vous débrouiller par vous-même sur ce problème. Cela devrait aussi être ce qui fait que pas beaucoup de développeurs suivent cette bonne pratique. L'implémentation suivante semble plus une solution de contournement qu'une implémentation durable. À cause de cela, vous pouvez décider par vous-même si vous souhaitez l'implémenter pour contourner le warning dû à un composant démonté. Cependant, conserver le warning en mémoire dans le cas où il se produit dans un prochain chapitre de ce livre ou un jour dans votre propre application. Alors vous saurez comment le traiter.
+
+Commençons à contourner cela. Vous pouvez introduire une propriété qui tient maintient l'état du cycle de votre composant. Elle peut être initialisée à `false` lorsque le composant s'initialise, changé à `true` lorsque le composant est monté, mais ensuite de nouveau établit à `false` lorsque le composant est démonté. De cette façon, vous pouvez suivre l'état du cycle de vie de votre composant. Il n'a aucun rapport avec l'état local stocké et modifié avec `this.state` et `this.setState()`, car vous devez être en mesure d'y accéder directement avec l'instance du composant sans compter sur la gestion de l'état local de React. De plus, il ne gère aucun rerendu du composant lorsque la propriété est modifiée de cette façon.
+ 
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+# leanpub-start-insert
+  _isMounted = false;
+# leanpub-end-insert
+
+  constructor(props) {
+    ...
+  }
+
+  ...
+
+  componentDidMount() {
+# leanpub-start-insert
+    this._isMounted = true;
+# leanpub-end-insert
+
+    const { searchTerm } = this.state;
+    this.setState({ searchKey: searchTerm });
+    this.fetchSearchTopStories(searchTerm);
+  }
+
+# leanpub-start-insert
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+# leanpub-end-insert
+
+  ...
+
+}
+~~~~~~~~
+
+Finalement, vous pouvez utiliser vos connaissances non pour interrompre la requête elle-même mais pour éviter le fait d'appeler `this.setState()` sur votre instance de composant même si le composant est déjà démonté. Cela empêchera le warning mentionné précédemment.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  fetchSearchTopStories(searchTerm, page = 0) {
+    axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
+# leanpub-start-insert
+      .then(result => this._isMounted && this.setSearchTopStories(result.data))
+      .catch(error => this._isMounted && this.setState({ error }));
+# leanpub-end-insert
+  }
+
+  ...
+
+}
+~~~~~~~~
+
+De plus le chapitre vous a montré comment vous pouvez remplacer une bibliothèque par une autre bibliothèque en React. Si vous rencontrez n'importent quels problèmes, vous pouvez utiliser le vaste écosystème de bibliothèque JavaScript pour vous aider. De plus, vous avez vu une façon de comment vous pouvez éviter le fait d'appeler `this.setState()` dans React sur un composant démonté. Si vous creusez plus profondément dans la bibliothèque *axios*, vous trouverez une façon d'empêcher l'annulation de la requête. C'est à vous de décider de faire plus de recherche sur ce sujet.
+
+### Exercices :
+
+* lire plus à propos de [pourquoi les frameworks sont importants](https://www.robinwieruch.de/why-frameworks-matter/)
+* lire plus à propos d'[une syntaxe alternative de composant React](https://github.com/the-road-to-learn-react/react-alternative-class-component-syntax)
+ 
 {pagebreak}
 
 Vous avez appris à interagir avec l'API React! Récapitulons les derniers chapitres :
-
 
 * React
   * Les méthodes du cycle de vie du composant de classe ES6 pour différent cas d'utilisation
@@ -1235,17 +1355,16 @@ Vous avez appris à interagir avec l'API React! Récapitulons les derniers chapi
   * rendus conditionnels
   * évènement synthétique concernant les formulaires
   * gestion d'erreur
-* ES6
+  * interrompre une requête d'API distante
+* ES6 et au-delà
   * template strings pour composer de chaines de caractères
   * spread operator pour des structures de données immutables.
   * noms de prorpiétés calculés
 * Général
   * interaction avec l'API d'Hacker News
-  * API native du navigateur fetch
+  * API native du navigateur *fetch*
   * recherche côté client et côté serveur
   * pagination des données
   * cache côté client
 
-Encore une fois il y a un intérêt à faire une pause. Intérioriser les acquis et les appliquer par vous-même. Vous pouvez expérimenter avec le code source que vous avez écrit jusqu'ici.
-
-Vous pouvez trouver le code source dans le [dépôt officiel](https://github.com/rwieruch/hackernews-client/tree/4.3).
+Encore une fois il y a un intérêt à faire une pause. Intérioriser les acquis et les appliquer par vous-même. Vous pouvez expérimenter avec le code source que vous avez écrit jusqu'ici. Vous pouvez trouver le code source dans le [dépôt officiel](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.3.1).

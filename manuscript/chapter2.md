@@ -349,7 +349,7 @@ Maintenant lancer une nouvelle fois l'application et essayait le bouton "Dismiss
 
 ### Exercices :
 
-* lire plus à propos [de l'état et du cycle de vie de React](https://facebook.github.io/react/docs/state-and-lifecycle.html)
+* lire plus à propos [de l'état et du cycle de vie de React](https://reactjs.org/docs/state-and-lifecycle.html)
 
 ## Bindings
 
@@ -1021,7 +1021,7 @@ La fonctionnalité de recherche devrait fonctionner maintenant. Essayer par vous
 
 ### Exercices :
 
-* lire plus à propos des [évènements React](https://facebook.github.io/react/docs/handling-events.html)
+* lire plus à propos des [évènements React](https://reactjs.org/docs/handling-events.html)
 * lire plus à propos [des fonctions d'ordre supérieur](https://en.wikipedia.org/wiki/Higher-order_function)
 
 ## ES6 Destructuring
@@ -1154,7 +1154,8 @@ La gestion totale de l'état interne et le flux de données unidirectionnel pour
 
 ### Exercices :
 
-* lire plus à propos des [formulaires React](https://facebook.github.io/react/docs/forms.html)
+* lire plus à propos des [formulaires React](https://reactjs.org/docs/forms.html)
+* lire plus à propos des [différents composants contrôlés](https://github.com/the-road-to-learn-react/react-controlled-components-examples)
 
 ## Diviser les composants
 
@@ -1346,7 +1347,7 @@ Maintenant, le texte "Search" peut être visible juste à côté de votre champ 
 
 ### Exercices :
 
-* lire plus à propos [du modèle de composition de React](https://facebook.github.io/react/docs/composition-vs-inheritance.html)
+* lire plus à propos [du modèle de composition de React](https://reactjs.org/docs/composition-vs-inheritance.html)
 
 ## Composants réutilisables
 
@@ -1529,7 +1530,7 @@ Maintenant vous avez un composant fonctionnel stateless allégé. Une fois que v
 ### Exercices :
 
 * refactorer le composant Table et Button en composants fonctionnels stateless
-* lire plus à propos [ des composants de classe ES6 et des composants fonctionnels stateless](https://facebook.github.io/react/docs/components-and-props.html)
+* lire plus à propos [ des composants de classe ES6 et des composants fonctionnels stateless](https://reactjs.org/docs/components-and-props.html)
 
 ## Styliser les composants
 
@@ -1813,6 +1814,4 @@ Vous avez appris les bases pour écrire votre propre application React! Récapit
 * Générale
   * les fonctions d'ordre supérieur
 
-Encore une fois il fait sens de prendre une pause. Intérioriser les acquis et appliquer les de votre propre initiative. Vous pouvez expérimenter avec le code source que vous avez écrit jusqu'à présent. De plus, vous pouvez en découvrir davantage dans la [documentation officielle](https://facebook.github.io/react/docs/installation.html).
-
-Vous pouvez trouver le code source dans le [dépôt officiel](https://github.com/rwieruch/hackernews-client/tree/4.2).
+Encore une fois il fait sens de prendre une pause. Intérioriser les acquis et appliquer les de votre propre initiative. Vous pouvez expérimenter avec le code source que vous avez écrit jusqu'à présent. Vous pouvez trouver le code source dans le [dépôt officiel](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.2).

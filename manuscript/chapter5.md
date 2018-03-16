@@ -1,6 +1,6 @@
 # React composants avancés
 
-Le chapitre se concentrera sur l'implémentation de composants React avancés. Vous apprendrez à propos des composants d'ordres supérieurs et comment les implémenter. De plus vous plongerez dans des sujets plus avancés de React et implémenterez des interactions complexes avec ce dernier.
+Le chapitre se concentrera sur l'implémentation de composants React avancés. Vous apprendrez à propos des composants d'ordre supérieur et comment les implémenter. De plus, vous plongerez dans des sujets plus avancés de React et implémenterez des interactions complexes avec ce dernier.
 
 ## Ref un DOM Element
 
@@ -154,8 +154,8 @@ Maintenant vous serez capable d'accéder à l'entrée de l'élément du DOM. Dan
 
 ### Exercises
 
-* lire plus à propos de l'[attribut ref de façon générale au sein de React](https://facebook.github.io/react/docs/refs-and-the-dom.html)
 * lire plus à propos de l'[usage de l'attribut ref au sein de React](https://www.robinwieruch.de/react-ref-attribute-dom-node/)
+* lire plus à propos de l'[attribut ref de façon générale au sein de React](ttps://reactjs.org/docs/refs-and-the-dom.html)
 
 ## Chargement ...
 
@@ -172,6 +172,7 @@ Maintenant vous aurez besoin d'une propriété pour stocker l'état du chargemen
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
+  _isMounted = false;
 
   constructor(props) {
     super(props);
@@ -223,10 +224,9 @@ class App extends Component {
     this.setState({ isLoading: true });
 # leanpub-end-insert
 
-    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
-      .then(response => response.json())
-      .then(result => this.setSearchTopStories(result))
-      .catch(error => this.setState({ error }));
+    axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
+      .then(result => this._isMounted && this.setSearchTopStories(result.data))
+      .catch(error => this._isMounted && this.setState({ error }));
   }
 
   ...
@@ -350,7 +350,11 @@ Maintenant vous pouvez utiliser l'HOC dans votre JSX. Un cas d'utilisation au se
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-const Button = ({ onClick, className = '', children }) =>
+const Button = ({
+  onClick,
+  className = '',
+  children,
+}) =>
   <button
     onClick={onClick}
     className={className}
@@ -445,7 +449,7 @@ Maintenant vous pouvez importer la fonctionnalité de tri de Lodash dans votre f
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 import React, { Component } from 'react';
-import fetch from 'isomorphic-fetch';
+import axios from 'axios';
 # leanpub-start-insert
 import { sortBy } from 'lodash';
 # leanpub-end-insert
@@ -501,6 +505,7 @@ Maintenant vous pouvez définir une nouvelle méthode de classe dans votre compo
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
+  _isMounted = false;
 
   constructor(props) {
 
@@ -516,6 +521,8 @@ class App extends Component {
     this.onSort = this.onSort.bind(this);
 # leanpub-end-insert
   }
+
+  ...
 
 # leanpub-start-insert
   onSort(sortKey) {
@@ -900,7 +907,7 @@ Et deuxièmement vous devez l'importer tout en haut du fichier *src/App.js*.
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 import React, { Component } from 'react';
-import fetch from 'isomorphic-fetch';
+import axios from 'axios';
 import { sortBy } from 'lodash';
 # leanpub-start-insert
 import classNames from 'classnames';
@@ -984,4 +991,4 @@ Vous avez appris les techniques de composant avancées dans React! Récapitulons
 * ES6
   * la décomposition du reste pour séparer les objets et tableaux
 
-Vous pouvez trouver le code source sur le [dépôt officiel](https://github.com/rwieruch/hackernews-client/tree/4.5).
+Vous pouvez trouver le code source sur le [dépôt officiel](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.5).

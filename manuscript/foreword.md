@@ -20,7 +20,7 @@ De nos jours, Robin est auto-entrepreneur pour apprendre aux autres. Il consacre
  
 # Témoignages
 
-Il y a beaucoup de [témoignages](https://roadtoreact.com/), [notations](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react) et [avis](https://www.amazon.com/dp/B077HJFCQX?tag=21moves-20) à propos du livre qui devrait confirmer sa qualité. J'en suis très satisfait, car j'attendais pas d'aussi important retours. Si vous appréciez également le livre, j'adorerais également trouver votre notation/avis quelques part. Cela m'aide à diffuser le livre. La suite montre un court extrait de ces avis positifs :
+Il y a beaucoup de [témoignages](https://roadtoreact.com/), [notations](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react) et [avis](https://www.amazon.com/dp/B077HJFCQX) à propos du livre qui devrait confirmer sa qualité. J'en suis très satisfait, car j'attendais pas d'aussi importants retours. Si vous appréciez également le livre, j'adorerais également trouver votre avis quelque part. Cela m'aide à diffuser le livre. La suite montre un court extrait de ces avis positifs :
 
 **[Muhammad Kashif](https://twitter.com/appsdevpk/status/848625244956901376) :** 
 "The Road to Learn React est un livre unique que je recommande à tous étudiants ou professionnels intéressés dans l'apprentissage des bases de React jusqu'aux niveaux avancées. Il embarque des astuces pertinentes et des techniques dont il est difficile de trouver ailleurs, et est remarquablement complet avec l'usage d'exemples et de références pour illustrer les problèmes, j'ai 17 ans d'expérience dans le développement d'applications desktop et web, et avant la lecture de ce livre j'avais des difficultés dans l'apprentissage de React, mais ce livre fonctionne tel de la magie."
@@ -119,6 +119,16 @@ Le livre devrait permettre à tout un chacun d'apprendre React. Cependant, pas t
 * 3 nouveaux chapitres (Bindings, Event Handlers, Gestion d'erreur)
 * 190+ pages de ressources didactiques
 * [+9 projets avec code source](https://roadtoreact.com/course-details?courseId=THE_ROAD_TO_LEARN_REACT)
+
+**17. February 2018 :**
+
+* Mise à niveau en node 8.9.4
+* Mise à niveau en npm 5.6.0
+* Mise à niveau en create-react-app 1.5.1
+* [v5 Pull Request](https://github.com/the-road-to-learn-react/the-road-to-learn-react/pull/105)
+* plus de chemins d'apprentissage
+* contenu de lecture référencé supplémentaire
+* 1 nouveau chapitre (Axios à la place de Fetch)
 
 {pagebreak}
 

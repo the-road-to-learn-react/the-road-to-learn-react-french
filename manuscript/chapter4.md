@@ -133,7 +133,7 @@ Vous pourriez vous demander : pourquoi nous n'avons pas suivi les meilleurs prat
 
 Par conséquent, je proposerai plusieurs structures de module que vous "pourriez" appliquer. Je vous recommande de les appliquer en tant qu'exercice à la fin du livre. Pour conserver le livre simple, j'effectuerai pas la séparation de code et continuerai les chapitres suivants avec le fichier *src/App.js*.
 
-Une structure de module possible serait : 
+Une structure de module possible serait :
 
 {title="Folder Structure",lang="text"}
 ~~~~~~~~
@@ -154,7 +154,7 @@ src/
   Search.css
 ~~~~~~~~
 
-Cela sépare les composants à l'intérieur de leurs propres fichiers, mais cela ne semble pas très prometteur. Vous pouvez voir beaucoup de duplication de nom et seules les extensions de fichier diffèrent. Une autre structure de module serait : 
+Cela sépare les composants à l'intérieur de leurs propres fichiers, mais cela ne semble pas très prometteur. Vous pouvez voir beaucoup de duplication de nom et seules les extensions de fichier diffèrent. Une autre structure de module serait :
 
 {title="Folder Structure",lang="text"}
 ~~~~~~~~
@@ -196,15 +196,15 @@ src/
     App/
       index.js
       test.js
-      index..css
+      index.css
     Button/
       index.js
       test.js
-      index..css
+      index.css
     ...
 ~~~~~~~~
 
-Naturellement les modules devront être séparés à l'intérieur de *src/constants/* et *src/components/*. Maintenant le fichier *src/constants/index.js* pourrait ressembler à cela : 
+Naturellement les modules devront être séparés à l'intérieur de *src/constants/* et *src/components/*. Maintenant le fichier *src/constants/index.js* pourrait ressembler à cela :
 
 {title="Code Playground: src/constants/index.js",lang="javascript"}
 ~~~~~~~~
@@ -229,7 +229,7 @@ import {
   PARAM_SEARCH,
   PARAM_PAGE,
   PARAM_HPP,
-} from '../constants/index.js';
+} from '../../constants/index.js';
 
 ...
 ~~~~~~~~
@@ -247,13 +247,13 @@ import {
   PARAM_PAGE,
   PARAM_HPP,
 # leanpub-start-insert
-} from '../constants';
+} from '../../constants';
 # leanpub-end-insert
 
 ...
 ~~~~~~~~
 
-Mais qu'est-ce qui est derrière le nommage de fichier *index.js*? La convention a été introduite dans le monde de node.js. Le fichier index est un point d'entrée auprès du module. Cela décrit l'API publique envers le module. Considérez la stucture de module suivante construite pour la démonstration : 
+Mais qu'est-ce qui est derrière le nommage de fichier *index.js*? La convention a été introduite dans le monde de node.js. Le fichier index est un point d'entrée auprès du module. Cela décrit l'API publique envers le module. Considérez la stucture de module suivante construite pour la démonstration :
 
 {title="Folder Structure",lang="text"}
 ~~~~~~~~
@@ -626,7 +626,7 @@ describe('Table', () => {
 
 *Shallow* rend le composant sans ses composants enfants. De cette façon, vous pouvez faire le test dévoué à un seul composant.
 
-Enzyme a dans l'ensemble trois mécanismes de rendu dans son API? Vous connaissez déjà `shallow()`, mais il y existe aussi `mount()` and `render()`. Les deux instancient les instances du composant parent ainsi que tous les composants enfants. De plus `mount()` vous donne un accès aux méthodes de cycle de vie du composant. Mais quand savoir utiliser quel mécanisme de rendu? Ici quelques règles générales : 
+Enzyme a dans l'ensemble trois mécanismes de rendu dans son API? Vous connaissez déjà `shallow()`, mais il y existe aussi `mount()` and `render()`. Les deux instancient les instances du composant parent ainsi que tous les composants enfants. De plus `mount()` vous donne un accès aux méthodes de cycle de vie du composant. Mais quand savoir utiliser quel mécanisme de rendu? Ici quelques règles générales :
 
 * Toujours débuter avec un test shallow
 * Si `componentDidMount()` ou `componentDidUpdate()` doit être testé, utiliser `mount()`
@@ -640,6 +640,7 @@ Vous pouvez continuer à tester unitairement vos composants. Mais assurez-vous d
 * écrire un test unitaire avec Enzyme pour votre composant Button
 * conserver vos tests unitaires à jour durant le chapitre suivant
 * lire plus à propos d'[Enzyme et de son API de rendu](https://github.com/airbnb/enzyme)
+* lire plus à propos du [testing des applications React](https://www.robinwieruch.de/react-testing-tutorial)
 
 ## Interface de composant avec les PropTypes
 
@@ -693,7 +694,7 @@ Button.propTypes = {
 # leanpub-end-insert
 ~~~~~~~~
 
-Tout simplement. Vous prenez chaque argument depuis la signature de fonction et lui assigner un *PropType*. Le *PropTypes* basiques pour les primitives et les objets complexes sont : 
+Tout simplement. Vous prenez chaque argument depuis la signature de fonction et lui assigner un *PropType*. Le *PropTypes* basiques pour les primitives et les objets complexes sont :
 
 * PropTypes.array
 * PropTypes.bool
@@ -724,7 +725,7 @@ Button.propTypes = {
 };
 ~~~~~~~~
 
-La `className` n'est pas requise, car elle peut par défaut être une chaine de caractère vide. Après vous définirez une interface *PropTypes* pour le composant Table : 
+La `className` n'est pas requise, car elle peut par défaut être une chaine de caractère vide. Après vous définirez une interface *PropTypes* pour le composant Table :
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~

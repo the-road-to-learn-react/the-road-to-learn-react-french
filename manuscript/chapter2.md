@@ -23,9 +23,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Lorsque nous avons un constructeur dans notre composant de classe ES6, il est obligatoire d'appeler `super();` parce que le composant App est une sous-classe de `Component`. D'où,  l'`extends Component` dans notre déclaration du composant App. Vous apprendrez ultérieurement plus à propos des composants de classe ES6.
+Le composant App est une sous-classe de `Component`: d'où l'`extends Component` dans votre déclaration du composant App. Vous apprendrez ultérieurement plus à propos des composants de classe ES6.
 
-Vous pouvez appeler `super(props);` aussi. Cela établi `this.props` dans notre constructeur si vous désirez y accéder depuis le constructeur. Autrement, quand on accède `this.props` dans votre constructeur, il serait `undefined`. Vous en apprendrez plus sur les propriétés de composant React ultérieurement.
+C'est obligatoire d'appeler `super(props);`: il crée `this.props` dans votre constructeur dans le cas où vous souhaitez y accéder depuis le constructeur. Autrement, lors de l'accès à `this.props` dans votre constructeur, ils seront `undefined`. Vous en apprendrez plus sur les propriétés de composant React ultérieurement.
 
 Maintenant, dans votre cas, l'état initial dans votre composant devrait être un échantillon d'une liste d'éléments.
 
@@ -102,7 +102,7 @@ Mais soyez vigilant. N'établissez pas l'état directement. Vous aurez la néces
 
 ## ES6 Object Initializer
 
-En JavaScript ES6, vous pouvez utiliser la syntaxe d'abréviation de propriété pour initialiser vos objets plus concisément. Imaginez l'initialisation de l'objet suivant : 
+En JavaScript ES6, vous pouvez utiliser la syntaxe d'abréviation de propriété pour initialiser vos objets plus concisément. Imaginez l'initialisation de l'objet suivant :
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -113,7 +113,7 @@ const user = {
 };
 ~~~~~~~~
 
-Quand le nom de la propriété de votre objet est le même que vote nom de variable, vous pouvez faire ceci : 
+Quand le nom de la propriété de votre objet est le même que vote nom de variable, vous pouvez faire ceci :
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -890,6 +890,8 @@ Un aparté à propos de la mise à jour de l'état local dans un composant React
 Retournons à votre application. La liste n'est pas encore filtrée en fonction de la valeur du champ d'entrée qui est stocké dans l'état local. Simplement vous devez filtrer temporairement la liste basée sur le `searchTerm`. Vous disposez de tous ce dont vous avez besoin pour filtrer. Donc comment maintenant la filtrer de façon temporaire?
 Dans votre méthode `render()`, avant votre *map* par-dessus la liste, vous pouvez appliquer un filtre par-dessus. Le filtre devra seulement évaluer si le `searchTerm` correspond avec la propriété *title* de l'objet. Vous avez déjà utilisé la fonctionnalité de filtre du JavaScript natif, donc faisons-le de nouveau. Vous pouvez glisser la fonction de filtre avant la fonction *map*, car la fonction de filtre retourne un nouveau tableau et ainsi la fonction *map* peut l'utiliser c'est une façon très commode.
 
+
+
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
@@ -926,7 +928,7 @@ Premièrement, vous devez définir la fonction d'ordre supérieur à l'extérieu
 ~~~~~~~~
 # leanpub-start-insert
 function isSearched(searchTerm) {
-  return function(item) {
+  return function (item) {
     // certaines conditions qui retournent true ou false
   }
 }
@@ -944,7 +946,7 @@ La fonction prend le `searchTerm` et retourne une autre fonction, car après tou
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 function isSearched(searchTerm) {
-  return function(item) {
+  return function (item) {
 # leanpub-start-insert
     return item.title.toLowerCase().includes(searchTerm.toLowerCase());
 # leanpub-end-insert
@@ -977,7 +979,7 @@ Une autre façon soignée de refactorer peut être réalisé de nouveau avec la 
 ~~~~~~~~
 // ES5
 function isSearched(searchTerm) {
-  return function(item) {
+  return function (item) {
     return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1;
   }
 }
@@ -1150,7 +1152,7 @@ class App extends Component {
 
 C'est tout. La boucle de flux de données unidirectionnel pour le champ d'entrée est auto-contenue dorénavant. L'état interne du composant est le seul et unique source de vérité pour le champ d'entrée.
 
-La gestion totale de l'état interne et le flux de données unidirectionnel pourraient être nouveaux pour vous. Mais une fois vous l'aurez utilisé, il deviendra un flux naturel pour implémenter des choses en React. En général, React apporte un nouveau patron de conception avec le flux de données unidirectionnel dans le monde des *single page applications*. C'est d'ailleurs adopté par plusieurs frameworks et bibliothèques maintenant.
+La gestion totale de l'état interne et le flux de données unidirectionnel pourraient être nouveaux pour vous. Mais une fois vous l'aurez utilisé, il deviendra un flux naturel pour implémenter des choses en React. En général, React apporte un nouveau patron de conception avec le flux de données unidirectionnel dans le monde des *single page applications*. C'est d'ores et déjà adopté par plusieurs frameworks et bibliothèques.
 
 ### Exercices :
 
@@ -1159,7 +1161,7 @@ La gestion totale de l'état interne et le flux de données unidirectionnel pour
 
 ## Diviser les composants
 
-Maintenant, vous avez un imposant composant App. Il continue de grandir et peut finalement devenir confus. Vous devez le diviser en plusieurs morceaux de composants plus petit.
+Maintenant, vous avez un imposant composant App. Il continue de grandir et peut finalement devenir confus. Commençons par diviser en plusieurs morceaux de composants plus petits, la création de composants séparés pour le champ de recherche et pour la liste des éléments.
 
 Commençons par utiliser un composant pour l'entrée de recherche et un composant pour la liste d'éléments.
 
@@ -1413,7 +1415,7 @@ class Table extends Component {
 ~~~~~~~~
 
 Le composant Button attend une propriété `className` dans les propriétés. L'attribut `className` est un autre dérivé React pour l'attribut HTML `class`. Mais nous ne transmettons aucun `className` lorsque le Button était utilisé. Dans le code il devrait être plus explicite que la `className` dans le composant Button soit optionnelle. Ainsi, vous pouvez assigner une valeur par défaut dans votre objet de décomposition.
- 
+
 Par conséquent, vous pouvez utiliser le paramètre par défaut qui est une fonctionnalité de JavaScript ES6.
 
 {title="src/App.js",lang=javascript}

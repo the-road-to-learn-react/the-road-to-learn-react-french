@@ -10,7 +10,7 @@ L'entièreté de la fonctionnalité de tri est seulement utilisé dans le compos
 
 Dans le but de traiter avec l'état et les méthodes de classe dans le composant Table, il doit devenir un composant de classe ES6. Le refactoring d'un composant fonctionnel stateless vers un composant de classe ES6 est trivial.
 
-Voici votre composant Table comme un composant fonctionnel stateless : 
+Voici votre composant Table comme un composant fonctionnel stateless :
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -116,7 +116,7 @@ N'oubliez pas de supprimer l'état déplacé et la méthode de classe `onSort()`
 ~~~~~~~~
 class App extends Component {
   _isMounted = false;
-  
+
   constructor(props) {
     super(props);
 
@@ -364,7 +364,7 @@ setSearchTopStories(result) {
 }
 ~~~~~~~~
 
-Vous pouvez déplacer le bloc en entier que vous avez déjà implémenté à l'intérieur de la fonction. Vous avez seulement à échanger le fait que vous opérez sur le `prevState` plutôt que `this.state`.
+Vous pouvez déplacer le bloc en entier que vous avez déjà implémenté à l'intérieur de la fonction. Vous avez seulement à remplacer le fait que vous opérez sur le `prevState` plutôt que `this.state`.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~

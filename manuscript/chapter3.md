@@ -22,14 +22,14 @@ Maintenant vous en savez plus à propos des méthodes du cycle de vie et de quan
 
 Le montage d'un composant a deux méthodes de cycle de vie supplémentaires : `componentWillMount()` et `componentDidMount()`. Le constructeur est appelé en premier, `componentWillMount()` sera appelée avant la méthode `render()` et `componentDidMount()` est apellée après la méthode `render()`.
 
-Dans l'ensemble le processus de montage a 4 méthodes de cycle de vie. Elles sont invoquées dans l'ordre suivant : 
+Dans l'ensemble le processus de montage a 4 méthodes de cycle de vie. Elles sont invoquées dans l'ordre suivant :
 
 * constructor()
 * componentWillMount()
 * render()
 * componentDidMount()
 
-Mais qu'advient-il du cycle de vie de la mise à jour d'un composant qui se produit lorsque l'état ou les propriétés changent? Dans l'ensemble il a 5 méthodes de cycle de vie dans l'ordre suivant : 
+Mais qu'advient-il du cycle de vie de la mise à jour d'un composant qui se produit lorsque l'état ou les propriétés changent? Dans l'ensemble il a 5 méthodes de cycle de vie dans l'ordre suivant :
 
 * componentWillReceiveProps()
 * shouldComponentUpdate()
@@ -39,7 +39,7 @@ Mais qu'advient-il du cycle de vie de la mise à jour d'un composant qui se prod
 
 Dernier point, mais pas des moindres, il y a le cycle de vie de démontage. Il a seulement une méthode de cycle de vie : `componentWillUnmount()`.
 
-Après tous, vous n'avez pas besoin de savoir toutes ces méthodes de cycle pour débuter. Cela peut-être encore un peu intimidant vous ne les utiliserez pas toutes. Même dans une grande application React vous utiliserez seulement une petite partie d'entre eux à l'exception du `constructor()` et de la méthode `render()`. Pourtant, il est bon de connaître que chaque méthode de cycle de vie peut être utilisé pour des cas d'utilisation spécifiques : 
+Après tous, vous n'avez pas besoin de savoir toutes ces méthodes de cycle pour débuter. Cela peut-être encore un peu intimidant vous ne les utiliserez pas toutes. Même dans une grande application React vous utiliserez seulement une petite partie d'entre eux à l'exception du `constructor()` et de la méthode `render()`. Pourtant, il est bon de connaître que chaque méthode de cycle de vie peut être utilisé pour des cas d'utilisation spécifiques :
 
 
 * **constructor(props)** - C'est appelé lorsque le composant est initialisé. Vous pouvez donner un état initial au composant et lier les méthodes de classe dans cette méthode du cycle de vie.
@@ -240,7 +240,7 @@ this.state.result.hits = updatedHits;
 
 React adopte les structures de données immutables. Ansi vous ne devez pas muter un objet (ou muter l'état directement). Une meilleure approche est de générer un nouvel objet basé sur les informations que vous possédez? Ainsi aucun des objets sera altéré. Vous conserverez les structures de données immutables. Vous retournerez toujours un nouvel objet et altérerez jamais un objet.
 
-Par conséquent vous pouvez utiliser `Object.assign()` de l'ES6 JavaScript. Il prend en premier argument un objet cible. Tous les arguments suivants sont des objets sources. Ces objets sont fusionnés à l'intérieur de l'objet cible. L'objet cible peut être un objet vide. Il adopte l'immutabilité, aucun objet source sera muté. Cela ressemblera à cela : 
+Par conséquent vous pouvez utiliser `Object.assign()` de l'ES6 JavaScript. Il prend en premier argument un objet cible. Tous les arguments suivants sont des objets sources. Ces objets sont fusionnés à l'intérieur de l'objet cible. L'objet cible peut être un objet vide. Il adopte l'immutabilité, aucun objet source sera muté. Cela ressemblera à cela :
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -812,7 +812,7 @@ result: {
 }
 ~~~~~~~~
 
-Imaginez vous devoir faire deux requêtes API. Une pour le terme "redux" et une autre pour "react". Les objets résultats devront ressembler au suivant : 
+Imaginez vous devoir faire deux requêtes API. Une pour le terme "redux" et une autre pour "react". Les objets résultats devront ressembler au suivant :
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1233,7 +1233,7 @@ Regardons comment l'API *fetch* native peut être substitué avec *axios*. A vra
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
-npm install axios
+npm install --save axios
 ~~~~~~~~
 
 Deuxièmement, vous pouvez importer *axios* dans votre fichier du composant App :
@@ -1282,7 +1282,7 @@ Warning: Can only update a mounted or mounting component. This usually means you
 Vous pouvez traiter ce problème en interrompant la requête lorsque votre composant se démonte ou empêcher l'appel `this.setState()` sur un composant démonté. C'est une bonne pratique dans React, même si elle n'est pas suivi par de très nombreux développeurs, dans le but de conserver une application propre sans warnings dérangeants. Cependant, l'API *promise* courante n'implémente pas le fait d'interrompre une requête. Ainsi vous avez besoin de vous débrouiller par vous-même sur ce problème. Cela devrait aussi être ce qui fait que pas beaucoup de développeurs suivent cette bonne pratique. L'implémentation suivante semble plus une solution de contournement qu'une implémentation durable. À cause de cela, vous pouvez décider par vous-même si vous souhaitez l'implémenter pour contourner le warning dû à un composant démonté. Cependant, conserver le warning en mémoire dans le cas où il se produit dans un prochain chapitre de ce livre ou un jour dans votre propre application. Alors vous saurez comment le traiter.
 
 Commençons à contourner cela. Vous pouvez introduire une propriété qui tient maintient l'état du cycle de votre composant. Elle peut être initialisée à `false` lorsque le composant s'initialise, changé à `true` lorsque le composant est monté, mais ensuite de nouveau établit à `false` lorsque le composant est démonté. De cette façon, vous pouvez suivre l'état du cycle de vie de votre composant. Il n'a aucun rapport avec l'état local stocké et modifié avec `this.state` et `this.setState()`, car vous devez être en mesure d'y accéder directement avec l'instance du composant sans compter sur la gestion de l'état local de React. De plus, il ne gère aucun rerendu du composant lorsque la propriété est modifiée de cette façon.
- 
+
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
@@ -1338,13 +1338,13 @@ class App extends Component {
 }
 ~~~~~~~~
 
-De plus le chapitre vous a montré comment vous pouvez remplacer une bibliothèque par une autre bibliothèque en React. Si vous rencontrez n'importent quels problèmes, vous pouvez utiliser le vaste écosystème de bibliothèque JavaScript pour vous aider. De plus, vous avez vu une façon de comment vous pouvez éviter le fait d'appeler `this.setState()` dans React sur un composant démonté. Si vous creusez plus profondément dans la bibliothèque *axios*, vous trouverez une façon d'empêcher l'annulation de la requête. C'est à vous de décider de faire plus de recherche sur ce sujet.
+De plus le chapitre vous a montré comment vous pouvez remplacer une bibliothèque par une autre bibliothèque en React. Si vous rencontrez n'importent quels problèmes, vous pouvez utiliser le vaste écosystème de bibliothèque JavaScript pour vous aider. De plus, vous avez vu une façon de comment vous pouvez éviter le fait d'appeler `this.setState()` dans React sur un composant démonté. Si vous creusez plus profondément dans la bibliothèque *axios*, vous trouverez une façon d'annuler la requête. C'est à vous de décider de faire plus de recherche sur ce sujet.
 
 ### Exercices :
 
 * lire plus à propos de [pourquoi les frameworks sont importants](https://www.robinwieruch.de/why-frameworks-matter/)
 * lire plus à propos d'[une syntaxe alternative de composant React](https://github.com/the-road-to-learn-react/react-alternative-class-component-syntax)
- 
+
 {pagebreak}
 
 Vous avez appris à interagir avec l'API React! Récapitulons les derniers chapitres :

@@ -30,11 +30,11 @@ De nos jours, React est probablement l'un des meilleurs choix pour construire da
 
 ## Prérequis
 
-Si vous êtes issue d'un autre framework ou d'une bibliothèque pour SPA, vous devriez déjà être familier avec les bases du web développement. Si vous avez juste débuté en développement web, vous devriez vous sentir assez confortable avec HTML, CSS et JavaScript ES5 pour apprendre React. Ce livre fera une transition douce vers JavaScript ES6 et au-delà. Je vous encourage à rejoindre le  [Groupe Slack] officiel (https://slack-the-road-to-learn-react.wieruch.com/) du livre pour être aidé ou aider les autres.
+Quels sont les prérequis pour lire ce livre? Tout d'abord, si vous êtes déjà familier avec les bases du web développement. Vous devriez être familier quant à l'utilisation d'HTML, CSS et JavaScript. Peut-être, le terme [API](https://www.robinwieruch.de/what-is-an-api-javascript/) ne vous est pas étranger également, car nous allons utiliser des APIs dans ce livre. De plus, je vous encourage à rejoindre le  [Groupe Slack] officiel (https://slack-the-road-to-learn-react.wieruch.com/) du livre pour être aidé ou aider les autres.
 
 ### Éditeur et terminal
 
-Qu'en est-il de l'environnement de développement? Vous aurez besoin d'un éditeur ou d'un IDE et d'un terminal (*command line tool*). Vous pouvez [suivre mon guide d'installation](https://www.robinwieruch.de/developer-setup/). C'est illustré pour les utilisateurs de MacOS, mais vous pouvez remplacer la plupart des outils pour un autre système d'exploitation. Il y a une pléthore d'articles qui vous montreront comment installer un environnement de développement pour le web et de façon plus élaborée pour votre OS.
+Qu'en est-il de l'environnement de développement? Vous aurez besoin d'un éditeur ou d'un IDE et d'un terminal (*command line tool*). Vous pouvez [suivre mon guide d'installation](https://www.robinwieruch.de/developer-setup/). C'est illustré pour les utilisateurs de MacOS, mais vous pouvez trouver un guide d'installation Windows pour React également. En général, il y a une pléthore d'articles qui vous montreront comment installer un environnement de développement pour le web et de façon plus élaborée pour votre OS.
 
 Optionnellement, vous pouvez utiliser Git et Github par vous-même, pendant la réalisation des exercices du livre, pour conserver vos projets et la progression dans les dépôts de Github. Il existe un [petit guide](https://www.robinwieruch.de/git-essential-commands/) sur comment utiliser ces outils. Mais encore une fois, ce n'est pas obligatoire pour le livre et peut devenir contraignant lors de l'apprentissage de tout cela en même temps à partir de rien. Donc vous pouvez sauter cela si vous êtes un novice dans le développement web pour vous concentrer sur les parties essentielles apprises dans ce livre.
 
@@ -54,7 +54,7 @@ npm --version
 
 ## node et npm
 
-Ce chapitre vous donne un petit aperçu de node et npm. Ceci n'est pas exhaustif, mais vous aurez tous les outils nécessaires. Si vous êtes familier avec les deux technologies, vous pouvez sauter ce chapitre.
+Cette section de chapitre vous donne un petit aperçu de node et npm. Ceci n'est pas exhaustif, mais vous aurez tous les outils nécessaires. Si vous êtes familier avec les deux technologies, vous pouvez sauter cette section.
 
 Le **node package manager** (npm) vous permet d'installer des externes en ligne de commande. Ces packages peuvent être un ensemble de fonctions utilitaires, bibliothèques ou un framework complet. Ils sont les dépendances de votre application. Vous pouvez soit installer ces packages dans votre dossier node package globalement ou dans votre dossier de projet local.
 
@@ -93,7 +93,7 @@ Le flag `-y` est un raccourci pour initialisé tout par défaut dans votre *pack
 
 Un dernier commentaire à propos du *package.json*. Le fichier vous permet de partager votre projet avec les autres développeurs sans partager tous les nodes packages. Le fichier possède toutes les références des nodes packages utilisés dans votre projet. Ces packages sont appelés dépendances. Tout le monde peut copier votre projet sans les dépendances. Les dépendances sont des références dans le *package.json*. Quelqu'un qui copie votre projet peut simplement installer tous les packages en utilisant `npm install` en ligne de commande.  Le script `npm install` prend toutes les dépendances listées dans le fichier *package.json* et les installent dans le dossier *node_modules/*.
 
-Je veux traiter une commande npm supplémentaire : 
+Je veux traiter une commande npm supplémentaire :
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -199,7 +199,7 @@ hackernews/
     registerServiceWorker.js
 ~~~~~~~~
 
-Une petite pause sur le dossier et les fichiers. C'est normal si vous ne les comprenez pas tous au début.
+Une petite pause sur les dossiers et les fichiers. C'est normal si vous ne les comprenez pas tous au début.
 
 * **README.md:** L'extension .md indique que le fichier est un fichier Markdown. Le Markdown est utilisé comme un langage de balisage allégé avec une syntaxe de formatage en texte brut. Plusieurs code source de projets arrivent avec un fichier *README.md* pour donner des instructions initiales à propos du projet. Finalement lors de l'envoi de votre projet auprès d'une plateforme telle que Github, le fichier *README.md* montrera son contenu de manière évidente lorsque vous accédez au dépôt. Comme vous avez utilisé *create-react-app*, votre *README.md* devrait être le même que celui affiché dans le dépôt officiel [dépôt GithHub create-react-app](https://github.com/facebookincubator/create-react-app).
 
@@ -207,9 +207,11 @@ Une petite pause sur le dossier et les fichiers. C'est normal si vous ne les com
 
 * **package.json:** Le fichier vous affiche une liste de dépendance de nodes packages et d'autre configurations de projet.
 
-* **.gitignore:** Le fichier indique tous les fichiers et dossiers qui ne devront pas être ajoutés à votre dépôt git distant lors de l'utilisation de git. Ils devraient seulement être présent au sein de votre projet local. Le dossier *node_modules/* en est un exemple d'utilisation. En effet, c'est suffisant de partager le fichier *package.json* avec vos paires pour leur permettre d'installer toutes les dépendances par eux-mêmes sans partager la totalité du dossier de dépendance.
+* **.gitignore:** Le fichier indique tous les fichiers et dossiers qui ne devront pas être ajoutés à votre dépôt git lors de l'utilisation de git. Ils devraient seulement être présent au sein de votre projet local. Le dossier *node_modules/* en est un exemple d'utilisation. En effet, c'est suffisant de partager le fichier *package.json* avec vos paires pour leur permettre d'installer toutes les dépendances par eux-mêmes sans partager la totalité du dossier de dépendance.
 
-* **public/:** Le dossier possède tous vos fichiers au moment de la construction de votre projet pour la mise en production. Finalement tout votre code écrit dans le dossier *src/* sera empaqueté à l'intérieur de quelques fichiers lors de la construction de votre projet et placé dans le dossier public.
+* **public/:** Le dossier possède tous vos fichiers racines, tel que *public/index.html*. Cet index est celui affiché lors du développement de votre app sur localhost:3000. Le boilerplate prend soin de relier cet index avec l'ensemble des scripts présents dans *src/*.
+
+* **build/** Le dossier sera créé lors de la phase de build du projet pour une mise en production. Il possède tous nos fichiers de production lors de la création de votre projet pour une mise en production. Tout votre code écrit dans les dossiers *src/* et *public/* est empaqueté au sein de quelques fichiers lors de la phase de build de votre projet et placé au sein du dossier de build.
 
 * **manifest.json** et **registerServiceWorker.js:** ne prêtez pas attention à ce que font ces fichiers pour le moment, nous n'en auront pas l'utilité dans ce projet.
 
@@ -217,7 +219,7 @@ Malgré tout, vous n'aurez pas la nécessité de toucher les fichiers et dossier
 
 De plus, vous trouverez un fichier *src/App.test.js* pour vos tests et un fichier *src/index.js* en tant que point d'entrée au monde de React. Vous serez amené à connaitre les deux fichiers dans un prochain chapitre. En plus, il y a un fichier *src/index.css* est un fichier *src/App.css* pour styliser votre application de façon générale et vos composants. Les composants arrivent tous avec un fichier de style par défaut lorsque vous les ouvrez.
 
-L'application *create-react-app* est un projet npm. Vous pouvez utiliser npm pour installer et désinstaller des nodes packages de votre projet. De plus, il embarque les scripts npm suivants disponibles en ligne de commande : 
+L'application *create-react-app* est un projet npm. Vous pouvez utiliser npm pour installer et désinstaller des nodes packages de votre projet. De plus, il embarque les scripts npm suivants disponibles en ligne de commande :
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -275,11 +277,11 @@ Ne vous laissez distraire par les déclarations d'import/export et de class. Ce 
 
 Dans le fichier vous avez une **React ES6 class component** avec le nom de l'application. C'est une déclaration de composant. Globalement après vous avez déclaré un composant, vous pouvez utiliser ce dernier en tant qu'élément depuis partout dans votre application. Il produira une **instance** de votre **component** ou en d'autres termes: le composant sera instancié.
 
-L'**element** est ce qui est retourné et spécifié dans la méthode `render()`. Les éléments sont la résultant de pourquoi les composants sont créés. C'est essentiel de comprendre la différence entre composant, instance et élément.
+L'**element** retourné est spécifié dans la méthode `render()`. Les éléments sont la résultant de pourquoi les composants sont créés. C'est essentiel de comprendre la différence entre un composant, une instance d'un composant et un élément.
 
 Prochainement, vous verrez où l'App component est instancié. Sans quoi vous ne pourriez apprécier le rendu en sortit du navigateur, n'est-ce pas? L'App component est seulement la déclaration, mais non son utilisation. Vous instancierait le composant quelque part dans votre JSX avec `<App />`.
 
-Le contenu dans le bloc de rendu apparaît assez similaire à de l'HTML, mais c'est du JSX. JSX vous permet de mélanger HTML et JavaScript. C'est puissant encore un peu déroutant quand on avait pour habitude de séparer l'HTML du JavaScript. C'est pourquoi, un bon point pour débuter consiste à utiliser de l'HTML basique à l'intérieur de votre JSX. Au tout début, supprimez tout le contenu distrayant du fichier.
+Le contenu dans le bloc de rendu apparaît assez similaire à de l'HTML, mais c'est du JSX. JSX vous permet de mélanger HTML et JavaScript. C'est puissant encore un peu déroutant quand on avait pour habitude de séparer l'HTML du JavaScript. C'est pourquoi, un bon point pour débuter consiste à utiliser de l'HTML basique à l'intérieur de votre JSX. Au tout début, ouvrez le fichier `App.js` et supprimez tout le code HTML inutile comme illustré ci-dessous.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -349,7 +351,7 @@ const helloWorld = 'Welcome to the Road to learn React';
 helloWorld = 'Bye Bye React';
 ~~~~~~~~
 
-Une variable déclarée avec `let` peut être muté.
+Une variable déclarée avec `let` peut être modifiée.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -531,7 +533,7 @@ class App extends Component {
     return (
       <div className="App">
 # leanpub-start-insert
-        {list.map(function(item) {
+        {list.map(function (item) {
           return <div>{item.title}</div>;
         })}
 # leanpub-end-insert
@@ -554,7 +556,7 @@ class App extends Component {
     return (
       <div className="App">
 # leanpub-start-insert
-        {list.map(function(item) {
+        {list.map(function (item) {
           return (
             <div>
               <span>
@@ -581,7 +583,7 @@ React fera tout le travail pour vous et affichera chaque objet. Mais vous devez 
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-{list.map(function(item) {
+{list.map(function (item) {
   return (
 # leanpub-start-insert
     <div key={item.objectID}>
@@ -602,7 +604,7 @@ Vous devrez vous assurer que l'attribut `key` est un identifiant stable. Ne fait
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 // ne pas faire cela
-{list.map(function(item, key) {
+{list.map(function (item, key) {
   return (
     <div key={key}>
       ...

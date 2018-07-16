@@ -1,6 +1,6 @@
 # Organisation du code et tests
 
-Ce chapitre se concentrera sur des sujets importants pour conserver un code maintenable dans une application scalable. Vous apprendrez à organiser le code adopter les meilleurs pratiques lors de la structuration de vos dossiers et fichiers. Un autre aspect vous apprendrez à tester, ce qui est primordial pour conserver un code robuste. L'entièreté du chapitre prendra du recul de l'aspect pratique de l'application et expliquera quelques-uns de ces sujets pour vous.
+Ce chapitre se concentrera sur des sujets importants pour conserver un code maintenable dans une application scalable. Vous apprendrez à organiser le code adopter les meilleurs pratiques lors de la structuration de vos dossiers et fichiers. Un autre aspect vous apprendrez à tester, ce qui est primordial pour conserver un code robuste. Enfin, vous allez apprendre à utiliser un outil très utile pour le deboggage de vos applications React. La majeure partie du chapitre prendra du recul sur l'aspect pratique de l'application et expliquera quelques-uns de ces sujets pour vous.
 
 ## ES6 Modules : Import et Export
 
@@ -201,7 +201,7 @@ src/
       index.js
       test.js
       index.css
-    ...
+    // ...
 ~~~~~~~~
 
 Naturellement les modules devront être séparés à l'intérieur de *src/constants/* et *src/components/*. Maintenant le fichier *src/constants/index.js* pourrait ressembler à cela :
@@ -231,7 +231,7 @@ import {
   PARAM_HPP,
 } from '../../constants/index.js';
 
-...
+// ...
 ~~~~~~~~
 
 Lorsque vous utilisez la convention de nommage *index.js*, vous pouvez omettre le nom du fichier du chemin relatif.
@@ -250,7 +250,7 @@ import {
 } from '../../constants';
 # leanpub-end-insert
 
-...
+// ...
 ~~~~~~~~
 
 Mais qu'est-ce qui est derrière le nommage de fichier *index.js*? La convention a été introduite dans le monde de node.js. Le fichier index est un point d'entrée auprès du module. Cela décrit l'API publique envers le module. Considérez la stucture de module suivante construite pour la démonstration :
@@ -316,21 +316,21 @@ Peut-être avez-vous entendu la pyramide de tests. Il y a les tests end-to-end, 
 
 Combien de tests de chaque type ai-je besoin? Vous souhaitez avoir plusieurs tests unitaires pour couvrir vos fonctions isolées. Après quoi, vous pouvez avoir plusieurs tests d'intégration pour couvrir le fait que les fonctions les plus importantes fonctionnent de façons combinées comme attendues. Enfin, mais pas des moindres vous pourrez vouloir avoir seulement quelques tests end-to-end pour simuler les scénarios critiques de votre application web. C'est tout pour l'introdution générale au sein du monde des tests.
 
-Donc comment appliquer ces connaissances de tests pour votre application React? La base pour les tests au sein de React est les tests de composant qui peut être vulgarisé en tant que tests unitaires et une certaine partie en tant que tests instantanés.  Vous mènerez les tests unitaires pour vos composants dans le prochain chapitre en utilisant une bibliothèque appelée Enzyme. Dans ce chapitre, vous vous concentrerez sur un autre type de tests : les tests d'instantanés. C'est là que Jest rentre en jeu.
+Donc comment appliquer ces connaissances de tests pour votre application React? La base pour les tests au sein de React est les tests de composant qui peut être vulgarisé en tant que tests unitaires et une certaine partie en tant que tests instantanés.  Vous mènerez les tests unitaires pour vos composants dans le prochain chapitre en utilisant une bibliothèque appelée Enzyme. Dans cette section du chapitre, vous vous concentrerez sur un autre type de tests : les tests d'instantanés. C'est là que Jest rentre en jeu.
 
-[Jest](https://facebook.github.io/jest/) est un framework JavaScript de tests qui est utilisé par Facebook. Dans la communauté React, c'est utilisé pour les tests de composant React. Heureusement *create-react-app* possède déjà Jest, donc vous n'avez pas besoin de vous préoccuper de son installation.
+[Jest](https://jestjs.io/) est un framework JavaScript de tests qui est utilisé par Facebook. Dans la communauté React, c'est utilisé pour les tests de composant React. Heureusement *create-react-app* possède déjà Jest, donc vous n'avez pas besoin de vous préoccuper de son installation.
 
 Démarrons le test de vos premiers composants. Avant de pouvoir faire cela, vous devez exporter les composants, que vous allez tester, depuis votre fichier *src/App.js*. Après quoi vous pouvez les tester dans un fichier différent. Vous avez appris cela dans le chapitre portant sur l'organisation du code.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-...
+// ...
 
 class App extends Component {
-  ...
+  // ...
 }
 
-...
+// ...
 
 export default App;
 
@@ -429,7 +429,7 @@ describe('App', () => {
     const component = renderer.create(
       <App />
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 # leanpub-end-insert
@@ -452,7 +452,7 @@ import renderer from 'react-test-renderer';
 import App, { Search } from './App';
 # leanpub-end-insert
 
-...
+// ...
 
 # leanpub-start-insert
 describe('Search', () => {
@@ -467,7 +467,7 @@ describe('Search', () => {
     const component = renderer.create(
       <Search>Search</Search>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -482,12 +482,12 @@ Deuxièmement, vous pouvez tester le composant Button auquel les mêmes principe
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
-...
+// ...
 # leanpub-start-insert
 import App, { Search, Button } from './App';
 # leanpub-end-insert
 
-...
+// ...
 
 # leanpub-start-insert
 describe('Button', () => {
@@ -502,7 +502,7 @@ describe('Button', () => {
     const component = renderer.create(
       <Button>Give Me More</Button>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -514,12 +514,12 @@ Enfin, mais pas des moindres, le composant Table auquel vous pouvez passer un en
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
-...
+// ...
 # leanpub-start-insert
 import App, { Search, Button, Table } from './App';
 # leanpub-end-insert
 
-...
+// ...
 
 # leanpub-start-insert
 describe('Table', () => {
@@ -540,7 +540,7 @@ describe('Table', () => {
     const component = renderer.create(
       <Table { ...props } />
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -555,6 +555,7 @@ Les tests d'instantané habituellement restent assez basiques. Vous voulez seule
 * regarder comment un test d'instantané échoue une fois que vous changez votre valeur de retour du composant avec la méthode `render()`
   * acceptez ou rejetez le changement d'instantané
 * conservez vos instantanés à jour lorsque l'implémentation de composant change dans les prochains chapitres
+* lire plus à propos de [Jest au sein de React](https://jestjs.io/docs/en/tutorial-react)
 
 ## Les tests unitaires avec Enzyme
 
@@ -598,7 +599,7 @@ import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import App, { Search, Button, Table } from './App';
 
-...
+// ...
 
 describe('Table', () => {
 
@@ -609,7 +610,7 @@ describe('Table', () => {
     ],
   };
 
-  ...
+  // ...
 
 # leanpub-start-insert
   it('shows two items in list', () => {
@@ -648,7 +649,7 @@ Vous pourriez connaitre [TypeScript](https://www.typescriptlang.org/) ou [Flow](
 
 Dans le livre, vous ne serez pas introduit à Flow ou TypeScript, mais à une autre façon proche de tester vos types dans les composants. React arrive avec un vérificateur de type embarqué pour empêcher les bugs. Vous pouvez utiliser *PropTypes* pour décrire votre interface de composant. Toutes les propriétés qui sont passées depuis un composant parent à un composant enfant seront validées selon l'interface *PropTypes* assignée au composant enfant.
 
-Le chapitre vous montera comment vous pouvez rendre tous vos types de composants sûrs avec *PropTypes*. J'omettrai ces changements pour les prochains chapitres, car ils ajoutent du remaniement de code inutile. Mais vous pouvez les conserver et les mettre à jour tout du long pour conserver votre type d'interface de composants sûrs.
+Cette section du chapitre vous montera comment vous pouvez rendre tous vos types de composants sûrs avec *PropTypes*. J'omettrai ces changements pour les prochains chapitres, car ils ajoutent du remaniement de code inutile. Mais vous pouvez les conserver et les mettre à jour tout du long pour conserver votre type d'interface de composants sûrs.
 
 Premièrement, vous devez installer un package séparé pour React.
 
@@ -710,7 +711,7 @@ De plus vous avez deux PropTypes supplémentaires pour définir un fragment (nod
 
 Vous utilisez déjà le *PropType* `node` pour le composant Button. Globalement il y a des définitions de *PropType* supplémentaires que vous pouvez étudier dans la documentation officielle de React.
 
-Pour le moment tout les *PropTypes* définies pour le Button sont optionnelles. Les paramètres peuvent être null ou undefined. Mais pour certaines propriétés vous voudriez imposer le fait qu'elles soient définies. Vous pouvez rendre nécessaire le fait que ces propriétés sont passées au composant.
+Pour le moment tout les *PropTypes* définies pour le Button sont optionnelles. Les paramètres peuvent être `null` ou `undefined`. Mais pour certaines propriétés vous voudriez imposer le fait qu'elles soient définies. Vous pouvez rendre nécessaire le fait que ces propriétés sont passées au composant.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -766,7 +767,7 @@ const Button = ({
   className = '',
   children
 }) =>
-  ...
+  // ...
 ~~~~~~~~
 
 Vous pouvez le remplacer avec la propriété par défaut interne de React :
@@ -805,6 +806,31 @@ Si vous lancez de nouveau vos tests, vous pourriez voir les erreurs *PropTypes* 
 * ajouter et mettre à jour les interfaces *PropType* lorsque vous ajoutez et mettez à jour des composants dans les prochains chapitres
 * lire plus à propos des [PropTypes de React](https://reactjs.org/docs/typechecking-with-proptypes.html)
 
+## Débuggage à l'aide du React Developer Tools
+
+Cette dernière section vous présente un outil très utile, généralement utilisé pour inspecter et debugger les applications React. [React Developer Tools](https://github.com/facebook/react-devtools) vous laisse inspecter la hiérarchie des composants React, les props et l'état. C'est une extension de navigateur web (pour l'heure, sur Chrome et Firefox) et une application standalone (qui fonctionne sur d'autres environnements).
+
+Une fois installé, l'icône de l'extension s'éclairera sur les sites web utilisant React. Sur ces sites web, vous verrez un onglet appelé "React" au sein de votre browser developer tools.
+
+Essayons cela sur notre application Hacker News. Sur la plupart des navigateurs, un moyen rapide pour faire apparaître le _dev tools_ up consiste à réaliser un click droit sur la page et allez sur “Inspecter”. Faites-le lorsque votre application est chargée, puis cliquez sur l'onglet "React". Vous devriez voir sa hiérarchie d'éléments, avec `<App>` l'élément racine. Si vous le développez, vous trouverez également des instances de vos composants `<Search>`, `<Table>` et `<Button>`.
+
+L'extension montre sur le panneau latéral l'état du composant ainsi que les props de l'élément sélectionné. Par exemple, si vous cliquez sur `<App>`, vous verrez qu'il ne dispose d'aucune props, mais qu'il a un état. C'est une technique de débuggage évidente pour monitorer l'état changeant de votre application dû à l'interaction de l'utilisateur.
+
+Premièrement, vous vérifierez l'option "Highlight Updates" (habituellement au-dessus de l'arbre des éléments). Deuxièmement, vous pouvez taper un terme de recherche différent dans le champ d'entrée de l'application. Comme vous le remarquerez, seulement `searchTerm` sera modifié au sein de l'état du composant. Vous connaissez d'ores et déjà ce qui se produit, mais maintenant vous pouvez voir que cela fonctionne comme prévu.
+
+Finalement, vous pouvez appuyer sur le bouton "Search". L'état `searchKey` sera immédiatement changé par la même valeur que `searchTerm` et quelques secondes après l'objet de réponse sera ajouté à `results`. la nature asynchrone de votre code est maintenant visible à l'oeil.
+
+Enfin mais pas des moindres, si vous effectuer un click droit sur n'importe quel élément, un dropdown menu vous montrera plusieurs options utiles. Par exemple, vous pouvez copier les props ou le nom de l'élément, trouver le noeud du DOM correspondant ou sauter vers le code source de l'application au sein du navigateur web. Cette dernière option est très utile pour insérer des points d'arrêt dans le but de debugger les fonctions JavaScript.
+
+### Exercises:
+
+* Installer l'extension [React Developer Tools](https://github.com/facebook/react-devtools) sur votre navigateur web favoris
+	* lancer votre application clone d'Hacker News et l'inspecter en utilisant l'extension
+	* Experimenter les changements d'état et de props
+	* Observer ce qui se produit lorsque vous déclencher une requête asynchrone
+	* Performer plusieurs requêtes, en en répétant certaines. Observer que le mécanisme de cache fonctionne
++* lire à propos de [comment débugger vos fonctions JavaScript au sein d'un navigateur web](https://developers.google.com/web/tools/chrome-devtools/javascript/)
+
 {pagebreak}
 
 Vous avez appris comment organiser votre votre et comment le tester! Récapitulons les derniers chapitres :
@@ -813,6 +839,7 @@ Vous avez appris comment organiser votre votre et comment le tester! Récapitulo
   * PropTypes vous laissent définir les vérifications de type pour les composants
   * Jest vous permet d'écrire des tests instantanés pour vos composants
   * Enzyme vous permet d'écrire des tests unitaires pour vos composants
+  * React Developer Tools est un outil de débuggage très utile
 * ES6
   * les déclarations d'import et d'export vous aident à organiser votre code
 * Général

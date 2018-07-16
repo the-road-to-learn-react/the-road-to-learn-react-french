@@ -10,11 +10,11 @@ Dans votre *package.json* vous trouverez les scripts pour *start*, *test* et *bu
 
 Si vous souhaitez lancer `npm run eject`, la commande fera une copie de toute la configuration et des dépendances vers votre *package.json* et un nouveau dossier *config/*. Vous souhaiteriez convertir le projet complet dans une installation customisée comprenant l'outillage incluant Babel et Webpack. Après quoi, vous possèderiez un contrôle absolu sur tous ces outils.
 
-La documentation officielle dit que *create-react-app* est adaptée pour des projets de petite à moyenne taille. Vous ne devez pas vous sentir obligé d'utiliser la commande "eject". 
+La documentation officielle dit que *create-react-app* est adaptée pour des projets de petite à moyenne taille. Vous ne devez pas vous sentir obligé d'utiliser la commande "eject".
 
 ### Exercices :
 
-* lire plus à propos d'[eject](https://github.com/facebookincubator/create-react-app#converting-to-a-custom-setup)
+* lire plus à propos d'[eject]((https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#npm-run-eject)
 
 ## Déployer votre application
 
@@ -22,7 +22,7 @@ Au bout du compte, aucune application ne devrait rester en local. Vous souhaitez
 
 Vous avez besoin de remplir deux prérequis avant de pouvoir déployer votre application sur Heroku :
 
-* installer le [CLI d'Heroku](https://devcenter.heroku.com/articles/heroku-command-line)
+* installer le [CLI d'Heroku](https://devcenter.heroku.com/articles/heroku-cli)
 * créer un [ compte Heroku gratuit](https://www.heroku.com/)
 
 Si vous avez installé Homebrew, vous pouvez installer le CLI d'Heroku en ligne de commande :

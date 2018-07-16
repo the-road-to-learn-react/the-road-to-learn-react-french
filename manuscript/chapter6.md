@@ -27,7 +27,7 @@ const Table = ({
     : sortedList;
 
   return (
-    ...
+    // ...
   );
 }
 ~~~~~~~~
@@ -53,7 +53,7 @@ class Table extends Component {
       : sortedList;
 
     return(
-      ...
+      // ...
     );
   }
 }
@@ -74,7 +74,7 @@ class Table extends Component {
 # leanpub-end-insert
 
   render() {
-    ...
+    // ...
   }
 }
 ~~~~~~~~
@@ -105,7 +105,7 @@ class Table extends Component {
 # leanpub-end-insert
 
   render() {
-    ...
+    // ...
   }
 }
 ~~~~~~~~
@@ -136,7 +136,7 @@ class App extends Component {
     this.needsToSearchTopStories = this.needsToSearchTopStories.bind(this);
   }
 
-  ...
+  // ...
 
 }
 ~~~~~~~~
@@ -147,7 +147,7 @@ De plus, vous pouvez faire une API allégée du composant Table. Supprimez les p
 ~~~~~~~~
 class App extends Component {
 
-  ...
+  // ...
 
   render() {
 # leanpub-start-insert
@@ -160,11 +160,11 @@ class App extends Component {
     } = this.state;
 # leanpub-end-insert
 
-    ...
+    // ...
 
     return (
       <div className="page">
-        ...
+        // ...
         { error
           ? <div className="interactions">
             <p>Something went wrong.</p>
@@ -176,7 +176,7 @@ class App extends Component {
 # leanpub-end-insert
           />
         }
-        ...
+        // ...
       </div>
     );
   }
@@ -189,7 +189,7 @@ Maintenant dans votre composant Table vous pouvez utiliser la méthode interne `
 ~~~~~~~~
 class Table extends Component {
 
-  ...
+  // ...
 
   render() {
 # leanpub-start-insert
@@ -261,7 +261,7 @@ class Table extends Component {
           </span>
         </div>
         { reverseSortedList.map((item) =>
-          ...
+          // ...
         )}
       </div>
     );
@@ -292,7 +292,7 @@ Mais `setState()` ne prend pas seulement un objet. Dans sa seconde version, vous
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
 this.setState((prevState, props) => {
-  ...
+  // ...
 });
 ~~~~~~~~
 
@@ -358,7 +358,7 @@ setSearchTopStories(result) {
 
 # leanpub-start-insert
   this.setState(prevState => {
-    ...
+    // ...
   });
 # leanpub-end-insert
 }
@@ -434,7 +434,7 @@ const updateSearchTopStoriesState = (hits, page) => (prevState) => {
 # leanpub-end-insert
 
 class App extends Component {
-  ...
+  // ...
 }
 ~~~~~~~~
 
@@ -472,7 +472,7 @@ Vous avez appris la gestion d'état avancé dans React! Récapitulons les dernie
 
 * React
   * élévation de la gestion de l'état haut et bas vers les composants appropriés
-  * setState peut utiliser une fonction pour empêcher des bugs d'état périmé
+  * `setState()` peut utiliser une fonction pour empêcher des bugs d'état périmé
   * les solutions externes existantes qui vous aident à apprivoiser l'état
 
 Vous pouvez trouver le code source sur le [dépôt officiel](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.6).

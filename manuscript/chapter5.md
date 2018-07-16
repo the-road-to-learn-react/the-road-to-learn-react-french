@@ -4,7 +4,7 @@ Le chapitre se concentrera sur l'implémentation de composants React avancés. V
 
 ## Ref un DOM Element
 
-Parfois vous aurez besoin d'interagir avec votre noeud de DOM au sein de React. L'attribut `ref` vous donne un accès à un noeud de vos éléments. Habituellement c'est un anti-pattern en React, car vous devez l'utiliser sa manière déclarative pour faire quoi que ce soit ainsi que son flux de données unidirectionnel. Vous avez appris cela lorsque vous avez introduit votre premier champ d'entrée de recherche. Mais il y a certains cas où vous avez besoin d'accéder à un noeud de DOM. La documentation officielle mentionne trois cas : 
+Parfois vous aurez besoin d'interagir avec votre noeud de DOM au sein de React. L'attribut `ref` vous donne un accès à un noeud de vos éléments. Habituellement c'est un anti-pattern en React, car vous devez l'utiliser sa manière déclarative pour faire quoi que ce soit ainsi que son flux de données unidirectionnel. Vous avez appris cela lorsque vous avez introduit votre premier champ d'entrée de recherche. Mais il y a certains cas où vous avez besoin d'accéder à un noeud de DOM. La documentation officielle mentionne trois cas :
 
 * utiliser l'API du DOM (focus, media playback etc.)
 * invoquer des animations impératives de noeuds du DOM
@@ -47,7 +47,7 @@ class Search extends Component {
 # leanpub-end-insert
 ~~~~~~~~
 
-L'objet `this` du composant de classe ES6 nous aide à référencer le noeud du DOM avec l'attribut `ref`.
+L'objet `this` du composant de classe ES6 nous aide à référencer l'élément du DOM avec l'attribut `ref`.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -67,7 +67,7 @@ class Search extends Component {
           value={value}
           onChange={onChange}
 # leanpub-start-insert
-          ref={(node) => { this.input = node; }}
+          ref={el => this.input = el}
 # leanpub-end-insert
         />
         <button type="submit">
@@ -86,7 +86,7 @@ Maintenant vous pouvez focus le champ d'entrée lorsque le composant est monté 
 class Search extends Component {
 # leanpub-start-insert
   componentDidMount() {
-    if(this.input) {
+    if (this.input) {
       this.input.focus();
     }
   }
@@ -106,7 +106,7 @@ class Search extends Component {
           type="text"
           value={value}
           onChange={onChange}
-          ref={(node) => { this.input = node; }}
+          ref={el => this.input = el}
         />
         <button type="submit">
           {children}
@@ -139,7 +139,7 @@ const Search = ({
         value={value}
         onChange={onChange}
 # leanpub-start-insert
-        ref={(node) => input = node}
+        ref={el => this.input = el}
 # leanpub-end-insert
       />
       <button type="submit">
@@ -187,10 +187,10 @@ class App extends Component {
 # leanpub-end-insert
     };
 
-    ...
+    // ...
   }
 
-  ...
+  // ...
 
 }
 ~~~~~~~~
@@ -203,10 +203,10 @@ Lorsque vous faites la requête, vous mutez l'état de chargement à true. Final
 ~~~~~~~~
 class App extends Component {
 
-  ...
+  // ...
 
   setSearchTopStories(result) {
-    ...
+    // ...
 
     this.setState({
       results: {
@@ -229,7 +229,7 @@ class App extends Component {
       .catch(error => this._isMounted && this.setState({ error }));
   }
 
-  ...
+  // ...
 
 }
 ~~~~~~~~
@@ -253,11 +253,11 @@ class App extends Component {
 # leanpub-end-insert
     } = this.state;
 
-    ...
+    // ...
 
     return (
       <div className="page">
-        ...
+        // ...
         <div className="interactions">
 # leanpub-start-insert
           { isLoading
@@ -279,7 +279,7 @@ Initialement le composant Loading s'affichera lorsque vous démarrer votre appli
 
 ### Exercices :
 
-* utiliser une biblohtèque telle que [Font Awesome](http://fontawesome.io/) pour afficher une icône de chargement au lieu du texte "Loading ..."
+* utiliser une biblohtèque telle que [Font Awesome](https://fontawesome.io/) pour afficher une icône de chargement au lieu du texte "Loading ..."
 
 ## Composants d'ordre supérieur
 
@@ -382,13 +382,13 @@ Maintenant tout est défini. En dernier étape, vous devez utiliser le composant
 ~~~~~~~~
 class App extends Component {
 
-  ...
+  // ...
 
   render() {
-    ...
+    // ...
     return (
       <div className="page">
-        ...
+        // ...
         <div className="interactions">
 # leanpub-start-insert
           <ButtonWithLoading
@@ -460,7 +460,7 @@ Vous avez plusieurs colonnes dans votre Table. Il y a les colonnes title, author
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-...
+// ...
 
 # leanpub-start-insert
 const SORTS = {
@@ -473,9 +473,9 @@ const SORTS = {
 # leanpub-end-insert
 
 class App extends Component {
-  ...
+  // ...
 }
-...
+// ...
 ~~~~~~~~
 
 Vous pouvez voir qu'il y a deux fonctions de tri qui retournent une liste inversée. C'est parce que vous voulez voir les éléments avec le plus de commentaires et de points plutôt que de voir les éléments avec le total le plus faible lorsque vous triez la liste pour la première fois.
@@ -509,7 +509,7 @@ class App extends Component {
 
   constructor(props) {
 
-    ...
+    // ...
 
     this.needsToSearchTopStories = this.needsToSearchTopStories.bind(this);
     this.setSearchTopStories = this.setSearchTopStories.bind(this);
@@ -522,7 +522,7 @@ class App extends Component {
 # leanpub-end-insert
   }
 
-  ...
+  // ...
 
 # leanpub-start-insert
   onSort(sortKey) {
@@ -530,7 +530,7 @@ class App extends Component {
   }
 # leanpub-end-insert
 
-  ...
+  // ...
 
 }
 ~~~~~~~~
@@ -541,7 +541,7 @@ La prochaine étape est de passer la méthode et `sortKey` à votre composant Ta
 ~~~~~~~~
 class App extends Component {
 
-  ...
+  // ...
 
   render() {
     const {
@@ -555,11 +555,11 @@ class App extends Component {
 # leanpub-end-insert
     } = this.state;
 
-    ...
+    // ...
 
     return (
       <div className="page">
-        ...
+        // ...
         <Table
           list={list}
 # leanpub-start-insert
@@ -568,7 +568,7 @@ class App extends Component {
 # leanpub-end-insert
           onDismiss={this.onDismiss}
         />
-        ...
+        // ...
       </div>
     );
   }
@@ -592,7 +592,7 @@ const Table = ({
     {SORTS[sortKey](list).map(item =>
 # leanpub-end-insert
       <div key={item.objectID} className="table-row">
-        ...
+        // ...
       </div>
     )}
   </div>
@@ -649,7 +649,7 @@ const Table = ({
     </div>
 # leanpub-end-insert
     {SORTS[sortKey](list).map(item =>
-      ...
+      // ...
     )}
   </div>
 ~~~~~~~~
@@ -716,7 +716,7 @@ De nouveau vous pouvez passer la propriété reverse à votre composant Table.
 ~~~~~~~~
 class App extends Component {
 
-  ...
+  // ...
 
   render() {
     const {
@@ -731,11 +731,11 @@ class App extends Component {
 # leanpub-end-insert
     } = this.state;
 
-    ...
+    // ...
 
     return (
       <div className="page">
-        ...
+        // ...
         <Table
           list={list}
           sortKey={sortKey}
@@ -745,7 +745,7 @@ class App extends Component {
           onSort={this.onSort}
           onDismiss={this.onDismiss}
         />
-        ...
+        // ...
       </div>
     );
   }
@@ -765,7 +765,7 @@ const Table = ({
   onDismiss
 }) => {
   const sortedList = SORTS[sortKey](list);
-  const reverseSortedList = isSortReverse
+  const finalSortedList = isSortReverse
     ? sortedList.reverse()
     : sortedList;
 
@@ -773,12 +773,12 @@ const Table = ({
 # leanpub-end-insert
     <div className="table">
       <div className="table-header">
-        ...
+        // ...
       </div>
 # leanpub-start-insert
-      {reverseSortedList.map(item =>
+      {finalSortedList.map(item =>
 # leanpub-end-insert
-        ...
+        // ...
       )}
     </div>
 # leanpub-start-insert
@@ -803,7 +803,7 @@ const Table = ({
   onDismiss
 }) => {
   const sortedList = SORTS[sortKey](list);
-  const reverseSortedList = isSortReverse
+  const finalSortedList = isSortReverse
     ? sortedList.reverse()
     : sortedList;
 
@@ -858,8 +858,8 @@ const Table = ({
           Archive
         </span>
       </div>
-      {reverseSortedList.map(item =>
-          ...
+      {finalSortedList.map(item =>
+          // ...
       )}
     </div>
   );
@@ -949,7 +949,7 @@ De nouveau, lorsque vous lancez vos tests, vous devez voir des tests d'instantan
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
-...
+// ...
 
 describe('Table', () => {
 
@@ -964,7 +964,7 @@ describe('Table', () => {
 # leanpub-end-insert
   };
 
-  ...
+  // ...
 
 });
 ~~~~~~~~
@@ -975,7 +975,7 @@ Enfin, votre interaction de tri avancé est maintenant terminée.
 
 ### Exercises:
 
-* utiliser une bibliothèque comme [Font Awesome](http://fontawesome.io/) pour indiquer le tri (inversé)
+* utiliser une bibliothèque comme [Font Awesome](https://fontawesome.io/) pour indiquer le tri (inversé)
   * cela pourrait être une icône de flèche vers le haut ou de flèche vers le bas à côté de chaque en-tête Sort
 * lire plus à propos de la [bibliothèque classnames](https://github.com/JedWatson/classnames)
 
@@ -984,7 +984,7 @@ Enfin, votre interaction de tri avancé est maintenant terminée.
 Vous avez appris les techniques de composant avancées dans React! Récapitulons les derniers chapitres :
 
 * React
-  * l'attribut res pour référencer les noeuds du DOM
+  * l'attribut `ref` pour référencer les éléments du DOM
   * les components d'ordre supérieur sont un moyen courant de construire des composants avancés
   * l'implementation d'interactions avancées dans React
   * les classNames conditionnels avec une élégante bibliothèque assistante

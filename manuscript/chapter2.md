@@ -1414,7 +1414,7 @@ class Table extends Component {
 }
 ~~~~~~~~
 
-Le composant Button attend une propriété `className` dans les propriétés. L'attribut `className` est un autre dérivé React pour l'attribut HTML `class`. Mais nous ne transmettons aucun `className` lorsque le Button était utilisé. Dans le code il devrait être plus explicite que la `className` dans le composant Button soit optionnelle. Ainsi, vous pouvez assigner une valeur par défaut dans votre objet de décomposition.
+Le composant Button attend une `props` `className` dans les propriétés. L'attribut `className` est un autre dérivé React pour l'attribut HTML `class`. Mais nous ne transmettons aucun `className` lorsque le Button était utilisé. Dans le code il devrait être plus explicite que la `className` dans le composant Button soit optionnelle. Ainsi, vous pouvez assigner une valeur par défaut dans votre objet de décomposition.
 
 Par conséquent, vous pouvez utiliser le paramètre par défaut qui est une fonctionnalité de JavaScript ES6.
 
@@ -1470,7 +1470,7 @@ function Search(props) {
 # leanpub-end-insert
 ~~~~~~~~
 
-C'est globalement tout. Les propriétés sont accessibles dans la signature de fonction et la valeur de retour est du JSX. Mais vous pouvez faire du code plus judicieux dans un composant fonctionnel stateless. Vous connaissez déjà la décomposition ES6. La meilleure pratique est de l'utiliser dans une signature de fonction pour décomposer les propriétés.
+C'est globalement tout. Les `props` sont accessibles dans la signature de fonction et la valeur de retour est du JSX. Mais vous pouvez faire du code plus judicieux dans un composant fonctionnel stateless. Vous connaissez déjà la décomposition ES6. La meilleure pratique est de l'utiliser dans une signature de fonction pour décomposer les `props`.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1489,7 +1489,7 @@ function Search({ value, onChange, children }) {
 }
 ~~~~~~~~
 
-Mais on peut faire mieux. Vous connaissez déjà les fonctions fléchées ES6 permettant de conserver vos fonctions concises. Vous pouvez supprimer le *block body* de la fonction. Dans un corps concis un retour implicit est attaché ainsi vous pouvez supprimer la déclaration du *return*. Puisque votre composant fonctionnel stateless est une fonction, vous pouvez également la conserver concise.
+Mais on peut faire mieux. Vous connaissez déjà les fonctions fléchées ES6 permettant de conserver vos fonctions concises. Vous pouvez supprimer le *block body* de la fonction. Dans un corps concis un retour implicit est attaché ainsi vous pouvez supprimer la déclaration du `return`. Puisque votre composant fonctionnel stateless est une fonction, vous pouvez également la conserver concise.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1545,7 +1545,7 @@ Tout d'abord, le style pour l'ensemble de votre application.
 body {
   color: #222;
   background: #f4f4f4;
-  font: 400 14px CoreSans, Arial,sans-serif;
+  font: 400 14px CoreSans, Arial, sans-serif;
 }
 
 a {

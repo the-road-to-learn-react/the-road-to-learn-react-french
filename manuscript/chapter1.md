@@ -104,6 +104,8 @@ Le flag `--save-dev` indique que le node package est seulement utilisé dans le 
 
 Vous rencontrerez beaucoup plus de commandes npm tout au long de votre utilisation. Mais celles-ci seront suffisants pour le moment.
 
+Il y a une chose supplémentaire qui a le mérite d'être mentionnée. Beaucoup de persones optent pour l'utilisation d'un autre package manager afin de travailler avec les nodes packages au sein de leurs applications. **Yarn** est manageur de dépendence qui fonctionne de façon très similaire qu'**npm**. Il a ses propres commandes pour performer les mêmes tâches, mais vous aurez tout aussi bien accès au npm registry. Yarn a été conçu pour résoudre quelques problèmes qu'npm n'avez pas encore résolus. Cependant, de nos jours, les deux outils évoluent très rapidement et vous pouvez choisir celui que vous voulez.
+
 ### Exercices :
 
 * installation d'un projet via npm
@@ -114,6 +116,7 @@ Vous rencontrerez beaucoup plus de commandes npm tout au long de votre utilisati
   * regarder à l'intérieur du fichier *package.json* et du dossier *node_modules/*
   * trouver par vous-même comment désinstaller le node package *react*
 * lire plus à propos de [npm](https://docs.npmjs.com/)
+* lire plus à propos du [yarn](https://yarnpkg.com/en/docs/) package manager
 
 ## Installation
 
@@ -146,7 +149,7 @@ Malheureusement ce n'est pas tout. Vous allez être obligéq de vous occuper de 
 
 ### Exercices :
 
-* lire plus à propos des [installations React](https://reactjs.org/docs/try-react.html)
+* lire plus à propos des [installations React](https://reactjs.org/docs/getting-started.html)
 
 ## L'installation zéro configuration
 
@@ -207,6 +210,8 @@ Une petite pause sur les dossiers et les fichiers. C'est normal si vous ne les c
 
 * **package.json:** Le fichier vous affiche une liste de dépendance de nodes packages et d'autre configurations de projet.
 
+* **yarn.lock:** Par défaut, si Yarn est installé, create-react-app utilise Yarn en tant que  package manager. Si vous n'avez pas installé Yarn alors create-react-app utilisera le Node package manager. si vous disposez de Yarn et Node en package manager d'installé vous pouvez utiliser le Node package manager en ajoutant --use-npm à la commande create-react-app. Vous n'avez pas besoin de prêter attention à ce fichier pour l'heure. Si vous voulez en apprendre plus à propos de la migration du Node package manager vers le Yarn package manager, se conférer https://yarnpkg.com/en/docs/migrating-from-npm.
+
 * **.gitignore:** Le fichier indique tous les fichiers et dossiers qui ne devront pas être ajoutés à votre dépôt git lors de l'utilisation de git. Ils devraient seulement être présent au sein de votre projet local. Le dossier *node_modules/* en est un exemple d'utilisation. En effet, c'est suffisant de partager le fichier *package.json* avec vos paires pour leur permettre d'installer toutes les dépendances par eux-mêmes sans partager la totalité du dossier de dépendance.
 
 * **public/:** Le dossier possède tous vos fichiers racines, tel que *public/index.html*. Cet index est celui affiché lors du développement de votre app sur localhost:3000. Le boilerplate prend soin de relier cet index avec l'ensemble des scripts présents dans *src/*.
@@ -223,13 +228,13 @@ L'application *create-react-app* est un projet npm. Vous pouvez utiliser npm pou
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
-// Lance l'application sur http://localhost:3000
+# Lance l'application sur http://localhost:3000
 npm start
 
-// Lance les tests
+# Lance les tests
 npm test
 
-// Construit l'application pour la mise en production
+# Construit l'application pour la mise en production
 npm run build
 ~~~~~~~~
 
@@ -577,7 +582,7 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-Vous pouvez remarquer la fonction map est simplement en ligne dans votre JSX. Chaque propriété de l'objet est affichée dans une balise `<span>`. De plus, la propriété url de l'objet est utilisée dans l'attribut `href` de la balise ancre.
+Vous pouvez remarquer la fonction `map` est simplement en ligne dans votre JSX. Chaque propriété de l'objet est affichée dans une balise `<span>`. De plus, la propriété url de l'objet est utilisée dans l'attribut `href` de la balise ancre.
 
 React fera tout le travail pour vous et affichera chaque objet. Mais vous devez ajouter un helper pour que React atteigne son plein potentiel et qu'il améliore ses performances. Vous allez devoir assigner un attribut clé à chaque élément de la liste. Ainsi React sera capable d'identifier les éléments ajoutés, changés et supprimés quand la liste change. L'échantillon d'éléments arrive d'ores et déjà avec un identifieur.
 
@@ -693,7 +698,7 @@ De plus, vous pouvez supprimer le *block body*, c'est-à-dire les accolades, de 
 # leanpub-end-insert
 ~~~~~~~~
 
-Votre JSX apparaît plus concis et lisible maintenant. Il omet la déclaration de fonction, les accolades et la déclaration du `return`. Au lieu de cela le développeur peut rester concentré sur les détails d'implémentation.
+Votre JSX apparaît plus concis et lisible maintenant. Il omet la déclaration de `function`, les accolades et la déclaration du `return`. Au lieu de cela le développeur peut rester concentré sur les détails d'implémentation.
 
 ### Exercices :
 

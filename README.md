@@ -1,6 +1,8 @@
 # The Road to learn React [Livre]
 
-Le dépôt officiel pour le livre open source [The Road to learn React](https://www.robinwieruch.de/the-road-to-learn-react/). De plus, ici vous pouvez aussi trouver le [code source](https://github.com/rwieruch/hackernews-client) et [le cours complet](https://roadtoreact.com/). Si vous voulez laisser un avis, vous pouvez le faire sur [Amazon](https://www.amazon.com/dp/B077HJFCQX?tag=21moves-20) ou [Goodreads](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react).
++[![Slack](https://slack-the-road-to-learn-react.wieruch.com/badge.svg)](https://slack-the-road-to-learn-react.wieruch.com/)
+
+Le dépôt officiel pour le livre open source [The Road to learn React](https://www.robinwieruch.de/the-road-to-learn-react/). De plus, ici vous pouvez aussi trouver le [code source](https://github.com/rwieruch/hackernews-client) et [le cours complet](https://roadtoreact.com/). Si vous voulez laisser un avis, vous pouvez le faire sur [Amazon](https://www.amazon.com/dp/B077HJFCQX?tag=21moves-20) ou [Goodreads](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react). Ce livre est également hebergé sur [Leanpub](https://leanpub.com/the-road-to-learn-react-french).
 
 ## Mise à jour, aide et support
 

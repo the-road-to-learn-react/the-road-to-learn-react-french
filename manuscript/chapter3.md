@@ -20,21 +20,21 @@ La méthode `render()` est aussi appelée durant le procédé de montage, mais a
 
 Maintenant vous en savez plus à propos des méthodes du cycle de vie et de quand elles sont appelées. D'ailleurs, vous les utilisez d'ores et déjà. Mais il y en a encore plus parmi eux.
 
-Le montage d'un composant a deux méthodes de cycle de vie supplémentaires : `componentWillMount()` et `componentDidMount()`. Le constructeur est appelé en premier, `componentWillMount()` sera appelée avant la méthode `render()` et `componentDidMount()` est apellée après la méthode `render()`.
+Le montage d'un composant a deux méthodes de cycle de vie supplémentaires : `getDerivedStateFromProps()` et `componentDidMount()`. Le constructeur est appelé en premier, `getDerivedStateFromProps()` sera appelée avant la méthode `render()` et `componentDidMount()` est apellée après la méthode `render()`.
 
 Dans l'ensemble le processus de montage a 4 méthodes de cycle de vie. Elles sont invoquées dans l'ordre suivant :
 
 * constructor()
-* componentWillMount()
+* getDerivedStateFromProps()
 * render()
 * componentDidMount()
 
 Mais qu'advient-il du cycle de vie de la mise à jour d'un composant qui se produit lorsque l'état ou les propriétés changent? Dans l'ensemble il a 5 méthodes de cycle de vie dans l'ordre suivant :
 
-* componentWillReceiveProps()
+* getDerivedStateFromProps()
 * shouldComponentUpdate()
-* componentWillUpdate()
 * render()
+* getSnapshotBeforeUpdate()
 * componentDidUpdate()
 
 Dernier point, mais pas des moindres, il y a le cycle de vie de démontage. Il a seulement une méthode de cycle de vie : `componentWillUnmount()`.
@@ -44,19 +44,25 @@ Après tous, vous n'avez pas besoin de savoir toutes ces méthodes de cycle pour
 
 * **constructor(props)** - C'est appelé lorsque le composant est initialisé. Vous pouvez donner un état initial au composant et lier les méthodes de classe dans cette méthode du cycle de vie.
 
-* **componentWillMount()** - C'est appelé avant la méthode `render()` du cycle de vie. C'est pourquoi il peut être utilisé pour définir l'état interne du composant, car il ne déclenchera pas un second rendu du composant. Généralement c'est recommandé d'utiliser le `constructor()` pour mettre en place l'état initial.
+* **static getDerivedStateFromProps(props, state)()** - C'est appelé avant la méthode `render()` du cycle de vie, à la fois lors du montage initial et lors des mis à jours ultérieurs. Il devrait retourner un objet pour mettre à jour l'état, ou null en cas de non mis à jour. Il existe pour de **rares** cas d'utilisation où l'état dépend des changements au fil du temps. Il est important de comprendre que c'est une méthode statique et qu'il n'a pas accès à l'instance du composant.
+
+, both on the initial mount and on the subsequent updates. It should return an object to update the state, or null to update nothing. It exists for **rare** use cases where the state depends on changes in props over time. It is important to know that this is a static method and it doesn't have access to the component instance.
+
+C'est pourquoi il peut être utilisé pour définir l'état interne du composant, car il ne déclenchera pas un second rendu du composant. Généralement c'est recommandé d'utiliser le `constructor()` pour mettre en place l'état initial.
 
 * **render()** - Cette méthode du cycle de vie est obligatoire et retourne les éléments en tant que sortie du composant. La méthode devra être pure et par conséquent ne devra pas modifier l'état du composant. Il a une entrée comme propriétés et état et retourne un élément.
 
 * **componentDidMount()** - Elle est appelée une seule fois lorsque le composant a été monté. C'est le moment parfait pour faire des requêtes asynchrones dans le but d'aller chercher des données depuis une API. Les données rapportées seront stockées dans l'état interne du composant pour être affichées dans la méthode du cycle de vie `render()`.
 
-* **componentWillReceiveProps(nextProps)** - La méthode de cycle de vie est appelée durant le cycle de vie de mise à jour. En entrée vous obtenez les prochaines propriétés. Vous pouvez faire une différence entre les prochaines propriétés avec les propriétés précédentes, en utilisant `this.props`, pour appliquer un comportement différent basé sur la différence. De plus, vous pouvez établir l'état basé sur les prochaines propriétés.
-
 * **shouldComponentUpdate(nextProps, nextState)** - C'est aussi appelée lors de la mise à jour du composant à cause d'un changement du state ou des propriétés. Vous l'utiliserez dans des applications React mûrs pour des optimisations de performance. Dépendant d'un boolean que vous retournez depuis cette méthode du cycle de vie, le composant et tous ses enfants seront rendus ou pas durant un cycle de vie de mise à jour. Vous pouvez empêcher la méthode de rendu du cycle de vie d'un composant.
 
 * **componentWillUpdate(nextProps, nextState)** - La méthode de cycle de vie est immédiatement invoqué avant la méthode `render()`. Vous avez toujours les prochaines propriétés et le prochain état à votre disposition. Vous pouvez utiliser la méthode en dernier recours pour performer des préparatifs avant que la méthode de rendu soit éxecutée. Noter que vous ne pouvez plus déclencher `setState()`. Si vous voulez calculer l'état en fonction des prochaines propriétés, vous êtes obligé d'utiliser `componentWillReceiveProps()`.
 
-* **componentDidUpdate(prevProps, prevState)**  La méthode de cycle de vie est immédiatement invoquée après la méthode `render()`. Vous pouvez l'utiliser comme opportunité de performer des opérations du DOM ou de performer des requêtes asychrones supplémentaires.
+* **getSnapshotBeforeUpdate(prevProps, prevState)** - Cette méthode du cycle de vie est invoquée juste avant que la plus récent rendu en sortie soit renvoyé vers le DOM. Dans de rares cas d'utilisation, le composant a besoin de capturer l'information depuis le DOM avant qu'il soit potentiellement changé. Cette méthode du cycle de vie permet au composant de le faire. Une autre méthode (`componentDidUpdate()`) recevra toutes valeurs retournées par `getSnapshotBeforeUpdate()` comme un paramètre.
+
+* **componentDidUpdate(prevProps, prevState, snapshot)**  La méthode de cycle de vie est immédiatement invoquée après que des mises à jours se produisent, mais pas lors du rendu initial. Vous pouvez l'utiliser comme opportunité pour performer des opérations du DOM ou pour performer des requêtes asynchrones supplémentaires. Si votre composant implémente la méthode `getSnapshotBeforeUpdate()`, la valeur que ce dernier retourne sera reçu comme paramètre de `snapshot`.
+
+* **componentDidUpdate(prevProps, prevState, snapshot)** - The lifecycle method is immediately invoked after updating occurs, but not for the initial render. You can use it as opportunity to perform DOM operations or to perform further asynchronous requests. If your component implements the `getSnapshotBeforeUpdate()` method, the value it returns will be received as the `snapshot` parameter.
 
 * **componentWillUnmount()** - Elle est appelée avant que vous détruisez votre composant. Vous devez utiliser cette méthode du cycle de vie pour performer toutes tâches de nettoyage.
 
@@ -657,7 +663,7 @@ Maintenant vous pouvez utiliser la nouvelle constante pour ajouter la paramètre
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
-const url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}`;
+const url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${DEFAULT_QUERY}&${PARAM_PAGE}`;
 
 console.log(url);
 // output: https://hn.algolia.com/api/v1/search?query=redux&page=

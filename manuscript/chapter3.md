@@ -555,7 +555,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Deuxièmement, introduire un bouton dans votre composant Search. Le bouton possède le `type="submit"` et le formulaire utilise son attribut pour passer la méthode `onSubmit()`. Vous pouvez réutiliser la propriété enfant, mais cette fois elle sera utilisée pour le contenu du bouton.
+Deuxièmement, introduire un bouton dans votre composant Search. Le bouton possède le `type="submit"` et le formulaire utilise son attribut `onSubmit` pour passer la méthode `onSubmit()`. Vous pouvez réutiliser la propriété `children`, mais cette fois elle sera utilisée pour le contenu du bouton.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~

@@ -34,7 +34,7 @@ Maintenant, dans votre cas, l'état initial dans votre composant devrait être u
 const list = [
   {
     title: 'React',
-    url: 'https://facebook.github.io/react/',
+    url: 'https://reactjs.org/',
     author: 'Jordan Walke',
     num_comments: 3,
     points: 4,
@@ -1445,7 +1445,7 @@ Maintenant vous avez quatre composants de classe ES6. Mais vous pouvez faire mie
 
 * **ES6 Class Components:** Vous avez déjà utilisé ce type de déclaration de composant dans vos quatre composants. Dans la définition de classe, ils étendent le composant React. l'`extend` fournit tous les méthodes de cycle de vie, disponible au sein de l'API de composant React. De cette façon, vous serez en mesure d'utiliser la méthode de classe `render()`. De plus, vous pouvez stocker et manipuler l'état à l'intérieur des composants de classe ES6 en utilisant `this.state` et `this.setState()`.
 
-* **React.createClass:** La déclaration de composant été utilisée dans les anciennes versions de React et encore dans les applications React ES5. Mais [Facebook la déclaré comme dépréciée](https://facebook.github.io/react/blog/2015/03/10/react-v0.13.html) en faveur du JavaScript ES6. Ils ont même ajouté un [warning de dépréciation dans la version 15.5](https://facebook.github.io/react/blog/2017/04/07/react-v15.5.0.html). Vous ne les l'utiliserez pas dans le livre.
+* **React.createClass:** La déclaration de composant été utilisée dans les anciennes versions de React et encore dans les applications React ES5. Mais [Facebook la déclaré comme dépréciée](https://reactjs.org/blog/2015/03/10/react-v0.13.html) en faveur du JavaScript ES6. Ils ont même ajouté un [warning de dépréciation dans la version 15.5](https://reactjs.org/blog/2017/04/07/react-v15.5.0.html). Vous ne les l'utiliserez pas dans le livre.
 
 Donc globalement il reste plus que deux déclarations de composant. Mais quand utiliser les composants fonctionnels stateless au lieu des composants de classe ES6? Une règle générale est d'utiliser les composants fonctionnels stateless lorsque vous n'avez pas besoin de l'état local ou des méthodes de cycle de vie du composant.
 Habituellement vous débutez par implémenter vos composants en tant que composants fonctionnels stateless. Une fois que vous avez besoin d'accéder à l'état ou aux méthodes de cycle de vie, vous êtes obligé de le refactorer en un composant de classe ES6. Dans notre application, nous avons commencé dans le sens inverse pour les besoins de l'apprentissage de React.

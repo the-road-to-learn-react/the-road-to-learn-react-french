@@ -50,9 +50,9 @@ Les imports peuvent avoir un alias. Cela peut arriver que vous importez des fonc
 
 {title="Code Playground: file2.js",lang="javascript"}
 ~~~~~~~~
-import { firstname as foo } from './file1.js';
+import { firstname as username } from './file1.js';
 
-console.log(foo);
+console.log(username);
 // output: robin
 ~~~~~~~~
 
@@ -102,6 +102,8 @@ export {
 export default person;
 ~~~~~~~~
 
+Et importer l'export nommé ou par défaut dans un autre fichier.
+
 {title="Code Playground: file2.js",lang="javascript"}
 ~~~~~~~~
 import developer, { firstname, lastname } from './file1.js';
@@ -112,7 +114,7 @@ console.log(firstname, lastname);
 // output: robin wieruch
 ~~~~~~~~
 
-Dans les exports nommés vous pouvez économiser des lignes additionnelles et exporter directement les variables.
+Vous pouvez aussi économiser des lignes additionnelles et exporter directement les variables en export nommé.
 
 {title="Code Playground: file1.js",lang="javascript"}
 ~~~~~~~~
@@ -829,7 +831,7 @@ Enfin mais pas des moindres, si vous effectuer un click droit sur n'importe quel
 	* Experimenter les changements d'état et de props
 	* Observer ce qui se produit lorsque vous déclencher une requête asynchrone
 	* Performer plusieurs requêtes, en en répétant certaines. Observer que le mécanisme de cache fonctionne
-+* lire à propos de [comment débugger vos fonctions JavaScript au sein d'un navigateur web](https://developers.google.com/web/tools/chrome-devtools/javascript/)
+* lire à propos de [comment débugger vos fonctions JavaScript au sein d'un navigateur web](https://developers.google.com/web/tools/chrome-devtools/javascript/)
 
 {pagebreak}
 

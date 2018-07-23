@@ -341,7 +341,7 @@ Qui plus est vous devriez avoir remarqué l'attribut `className`. Il réfléchit
   * utiliser un objet complexe pour représenter un utilisateur avec prénom et nom
   * rendre les propriétés de l'utilisateur dans votre JSX
 * Lire plus à propos de [JSX](https://reactjs.org/docs/introducing-jsx.html)
-* Lire plus à propos des [composants React, éléments et instances](https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html)
+* Lire plus à propos des [composants React, éléments et instances](https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html)
 
 ## ES6 const et let
 
@@ -505,7 +505,7 @@ import './App.css';
 const list = [
   {
     title: 'React',
-    url: 'https://facebook.github.io/react/',
+    url: 'https://reactjs.org/',
     author: 'Jordan Walke',
     num_comments: 3,
     points: 4,
@@ -513,7 +513,7 @@ const list = [
   },
   {
     title: 'Redux',
-    url: 'https://github.com/reactjs/redux',
+    url: 'https://redux.js.org/',
     author: 'Dan Abramov, Andrew Clark',
     num_comments: 2,
     points: 5,
@@ -623,7 +623,7 @@ Vous affichez les deux listes d'objets maintenant. Vous pouvez démarrer votre a
 ### Exercices :
 
 * lire plus à propos des [listes et clés de React](https://reactjs.org/docs/lists-and-keys.html)
-* Récapitulatif des [fonctionnalités natives et standard du tableau en JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+* Récapitulatif des [fonctionnalités natives et standard du tableau en JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/)
 * Utiliser plus d'expression JavaScript de vous-même en JXS
 
 ## ES6 les fonctions fléchées
@@ -767,6 +767,7 @@ Maintenant vous connaissez les bases autour des classes JavaScript ES6 et de com
 ### Exercices :
 
 * lire plus à propos des [classes ES6](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)
+* lire plus à propos [des fondamentaux de JavaScript nécessaire avant l'apprentissage de React](https://www.robinwieruch.de/javascript-fundamentals-react-requirements/)
 
 {pagebreak}
 

@@ -150,3 +150,30 @@ En fin de compte vous aurez une complète application React en production. Je su
 Puisque vous lisez le livre, je devine que vous êtes nouveau à React. C'est parfait. À la fin j'espère avoir des retours pour améliorer le contenu pour permettre à tout à chacun d'apprendre React. Vous pouvez avoir un impact direct sur [GitHub](https://github.com/rwieruch/the-road-to-learn-react) ou écrivez-moi sur [Twitter](https://twitter.com/rwieruch).
 
 {pagebreak}
+
+# Challenge
+
+Personnellement, j'hésite pas à prendre la plume pour partager mes apprentissages. C'est comme cela que j'en suis arrivé là où j'en suis. Vous enseignez de façon optimale un sujet dès lors que vous venez juste de l'apprendre par vous-même. Puisqu'enseigné un sujet m'aida dans ma carrière, je veux que vous expérimenter cela. Mais avant tout commencé par la cause de tout cela votre propre apprentissage. Mon challenge pour le livre est le suivant :
+Apprendre aux autres ce que vous êtes en train d'apprendre tandis que vous lisez le livre. Quelques jalons sur comment vous pouvez réaliser cela :
+
+* Écrire un blog post à propos d'un sujet particulier du livre. Je ne dis pas de copier et coller le contenu mais plutôt d'enseigner le sujet à votre manière. Trouver vos propres mots pour expliquer les points; saisir un problème et le résoudre, et même plonger plus profonds dans le sujet en comprenant les moindres détails. Puis enseignez-le dans un article. Vous observerez comment cela comblera vos trous de connaissance et comment cela ouvre des portes pour votre carrière sur le long terme.
+
+* Si vous êtes  actif sur les réseaux sociaux, comprenez et partagez a vos amis quelques astuces que vous avez apprises au cours de la lecture du livre. Par exemple, vous pouvez tweeter un bon tuyau sur Twitter à propos de votre dernière connaissance autour du livre qui pourrait être intéressante à d'autres également. Prenez juste un screenshot du passage du livre ou même mieux : écrivez à votre manière autour de cela. C'est comme cela que vous allez passer du côté de l'apprentissage sans investir trop de temps.
+
+* Si vous vous sentez confiant vous pouvez enregistrer votre apprentissage, partager votre aventure au travers du livre sur Facebook Live, Youtube Live ou Twitch. Cela permet de rester concentrer et de travailler à votre rythme avec le livre. Même si vous n'avez pas de personne qui suive vos live session, vous pouvez toujours placer la vidéo sur Youtube par la suite. De plus, c'est un moyen de verbaliser vos problèmes et de voir comment les résoudre.
+
+J'aimerais tellement voir des personnes réaliser ce dernier jalon : s'enregistrer soi-même pendant la lecture de ce livre, implémenter les applications, et organiser les exercices, puis uploader la version finale sur Youtube. Si des parties de l'enregistrement prennent un certain temps, juste couper la vidéo ou utiliser un effet timelapse. Si vous restez coincé et avez besoin de fixer un bug, ne couper pas ces passages mais plutôt les inclure dans la vidéo, car ils sont tellement plein de sens auprès de l'audience qui pourrait rencontrer les mêmes problèmes. Je crois que c'est important d'avoir ces parties dans votre vidéo. Quelques astuces pour la vidéo :
+
+* Faites-le dans votre langue maternelle, mais aussi en anglais si vous vous sentez à l'aise.
+
+* Verbaliser vos pensées, expliciter ce que vous êtes en train de faire ou les problèmes que vous rencontrer sur votre chemin. Avoir une vidéo visuelle n'est seulement qu'une partie du challenge, l'autre partie consiste à narrer durant l'implémentation. Cela n'a pas à être parfait. À la place cela doit sembler naturel et non polis comme toutes les autres vidéos d'apprentissage en ligne où personne rencontre de problèmes.
+
+* Si vous rencontrez des bugs, prennez le temps de comprendre le soucis. Essayer de fixer le problème par vous-même, n'abandonnez pas, et parlez du problème et de comment vous tentez de le résoudre. Cela aide les autres à suivre votre processus de pensé. Comme je l'ai dit précédemment, cela n'a pas de valeur de suivre des vidéos d'apprentissages en ligne dénuée de problèmes. C'est d'une plus grande valeur de voir quelqu'un d'autre en train de fixer un bug dans le code source.
+
+* Quelques mots à propos de la partie purement technique de l'enregistrement : Vérifier votre audio avant d'enregistrer une longue vidéo. Elle devrait avoir le bon volume et une bonne qualité. Concernant votre éditeur/IDE/terminal, assurez-vous d'augmenter la taille de la police. Peut-être est-il possible de placer le code et le navigateur côte à côte. Dans le cas contraire, faites un plein écran et passer de l'un à l'autre (e.g. MacOS CMD + Tab).
+
+* Éditer la vidéo vous-même avant de l'uploader sur Youtube. Cela n'a pas à être en haute qualité, mais vous pouvez essayer de rester concis pour votre audience (e.g. mettre de côté les moments de lectures et plutôt résumer les étapes avec vos propres mots).
+
+À la fin, vous pouvez me joindre pour promouvoir la vidéo. Si la vidéo s'avère bien, je pourrai vouloir l'inclure dans le livre officiellement en tant que contenu supplémentaire. Juste contactez-moi une fois que vous l'avez fini. Après tout, j'espère que vous accepterez ce challenge afin d'améliorer votre expérience d'apprentissage pendant la lecture du livre. En tout cas c'est ce que je vous souhaite.
+
+{pagebreak}

@@ -7,7 +7,7 @@ Le dépôt officiel pour le livre open source [The Road to learn React](https://
 ## Mise à jour, aide et support
 
 * Obtenez les mises à jour du livre via [e-mail](https://www.getrevue.co/profile/rwieruch) ou [Twitter](https://twitter.com/rwieruch)
-* Obtenez de l'aide, lors de votre apprentissage de React sur le livre ou apprenez aux autres, grâce à la [chaîne Slack officielle] (https://slack-the-road-to-learn-react.wieruch.com/)
+* Obtenez de l'aide, lors de votre apprentissage de React sur le livre ou apprenez aux autres, grâce à la [chaîne Slack officielle](https://slack-the-road-to-learn-react.wieruch.com/)
 * Découvrez comment vous pouvez [supporter le livre](https://www.robinwieruch.de/about/)
 
 ## Contribuez
